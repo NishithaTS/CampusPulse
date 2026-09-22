@@ -468,7 +468,7 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({ onSelect
                     <button
                       type="button"
                       onClick={() => alert('Moderation report marked as resolved.')}
-                      className="text-blue-600 font-bold hover:underline"
+                      className="text-red-600 font-bold hover:underline"
                     >
                       Mark Resolved
                     </button>

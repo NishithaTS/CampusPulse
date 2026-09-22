@@ -292,7 +292,7 @@ function MainContent() {
                     onClick={() => setFilterCertificates(!filterCertificates)}
                     className={`px-3 py-1.5 rounded-xl border flex items-center gap-1.5 transition-colors ${
                       filterCertificates
-                        ? 'bg-[#c52a22] text-white border-blue-600 shadow-2xs'
+                        ? 'bg-[#c52a22] text-white border-red-600 shadow-2xs'
                         : 'border-neutral-300 text-neutral-600 bg-[#fffdfb] hover:bg-neutral-50'
                     }`}
                   >
@@ -361,7 +361,7 @@ function MainContent() {
 
               {loadingEvents ? (
                 <div className="p-16 text-center text-neutral-400">
-                  <div className="w-8 h-8 border-3 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+                  <div className="w-8 h-8 border-3 border-red-600 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
                   <p className="text-xs font-semibold">Loading verified campus events...</p>
                 </div>
               ) : displayedEvents.length === 0 ? (

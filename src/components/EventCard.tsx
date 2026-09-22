@@ -50,8 +50,8 @@ export const EventCard: React.FC<EventCardProps> = ({
     }
     if (event.verificationBadge === 'verified_club') {
       return (
-        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-200">
-          <ShieldCheck className="w-3.5 h-3.5 text-blue-600" />
+        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-50 text-red-700 border border-red-200">
+          <ShieldCheck className="w-3.5 h-3.5 text-red-600" />
           Verified Club
         </span>
       );
@@ -149,7 +149,7 @@ export const EventCard: React.FC<EventCardProps> = ({
           {/* Title */}
           <h3
             onClick={() => onSelect(event)}
-            className="text-base sm:text-lg font-bold text-neutral-900 line-clamp-2 hover:text-blue-600 transition-colors cursor-pointer"
+            className="text-base sm:text-lg font-bold text-neutral-900 line-clamp-2 hover:text-red-600 transition-colors cursor-pointer"
           >
             {event.title}
           </h3>
@@ -188,7 +188,7 @@ export const EventCard: React.FC<EventCardProps> = ({
           <div className="w-full bg-neutral-100 rounded-full h-1.5 overflow-hidden">
             <div
               className={`h-full transition-all duration-300 rounded-full ${
-                isFull ? 'bg-amber-500' : fillPercentage > 85 ? 'bg-orange-500' : 'bg-blue-600'
+                isFull ? 'bg-amber-500' : fillPercentage > 85 ? 'bg-orange-500' : 'bg-red-600'
               }`}
               style={{ width: `${fillPercentage}%` }}
             />
@@ -234,7 +234,7 @@ export const EventCard: React.FC<EventCardProps> = ({
               <button
                 type="button"
                 onClick={() => onQuickRegister ? onQuickRegister(event) : onSelect(event)}
-                className="py-2 px-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1 shadow-sm"
+                className="py-2 px-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1 shadow-sm"
               >
                 <span>{isFull && event.waitlistEnabled ? 'Join Waitlist' : 'Register'}</span>
                 <ArrowRight className="w-3.5 h-3.5" />

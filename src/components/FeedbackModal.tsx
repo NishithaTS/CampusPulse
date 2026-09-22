@@ -155,7 +155,7 @@ export const FeedbackModal: React.FC<FeedbackModalProps> = ({
               <button
                 type="submit"
                 disabled={submitting}
-                className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-xs disabled:opacity-50"
+                className="px-5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold shadow-xs disabled:opacity-50"
               >
                 {submitting ? 'Submitting...' : 'Submit Verified Review'}
               </button>

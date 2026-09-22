@@ -90,7 +90,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               onClick={() => onTabChange('home')}
               className="flex items-center gap-2.5 text-left focus:outline-none"
             >
-              <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white font-black text-xl shadow-md shadow-blue-500/20">
+              <div className="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center text-white font-black text-xl shadow-md shadow-red-500/20">
                 <span className="tracking-tighter">CP</span>
               </div>
               <div>
@@ -173,11 +173,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => onTabChange('organizer')}
                 className={`px-3 py-2 rounded-xl text-sm font-semibold transition-colors flex items-center gap-1.5 ${
                   currentTab === 'organizer'
-                    ? 'bg-blue-50 text-blue-700 border border-blue-200'
+                    ? 'bg-red-50 text-red-700 border border-red-200'
                     : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50'
                 }`}
               >
-                <Layers className="w-4 h-4 text-blue-600" />
+                <Layers className="w-4 h-4 text-red-600" />
                 Organizer Hub
               </button>
             )}
@@ -224,7 +224,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 type="button"
                 onClick={onOpenCreateEvent}
-                className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-sm transition-all"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold shadow-sm transition-all"
               >
                 <PlusCircle className="w-4 h-4" />
                 Create Event
@@ -254,7 +254,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <div className="flex items-center gap-1.5">
                       <span className="font-bold text-sm text-neutral-900">Campus Alerts</span>
                       {unreadCount > 0 && (
-                        <span className="text-[11px] bg-blue-100 text-blue-700 font-semibold px-2 py-0.5 rounded-full">
+                        <span className="text-[11px] bg-red-100 text-red-700 font-semibold px-2 py-0.5 rounded-full">
                           {unreadCount} new
                         </span>
                       )}
@@ -263,7 +263,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       <button
                         type="button"
                         onClick={handleMarkAllRead}
-                        className="text-xs text-blue-600 hover:underline font-medium"
+                        className="text-xs text-red-600 hover:underline font-medium"
                       >
                         Mark all read
                       </button>
@@ -280,7 +280,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                           className={`p-2.5 rounded-xl text-xs transition-colors border ${
                             notif.isRead
                               ? 'bg-neutral-50/50 border-neutral-100 text-neutral-600'
-                              : 'bg-blue-50/70 border-blue-100 text-neutral-900 font-medium'
+                              : 'bg-red-50/70 border-red-100 text-neutral-900 font-medium'
                           }`}
                         >
                           <div className="flex items-start justify-between gap-2">
@@ -356,7 +356,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                           onTabChange('organizer');
                           setShowProfileMenu(false);
                         }}
-                        className="w-full text-left px-3 py-2 rounded-xl text-blue-700 hover:bg-blue-50 flex items-center gap-2"
+                        className="w-full text-left px-3 py-2 rounded-xl text-red-700 hover:bg-red-50 flex items-center gap-2"
                       >
                         <Layers className="w-3.5 h-3.5" />
                         Organizer Control Center
@@ -403,7 +403,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           type="button"
           onClick={() => onTabChange('home')}
           className={`flex flex-col items-center gap-1 text-[10px] font-semibold ${
-            currentTab === 'home' ? 'text-blue-600' : 'text-neutral-500'
+            currentTab === 'home' ? 'text-red-600' : 'text-neutral-500'
           }`}
         >
           <Compass className="w-5 h-5" />
@@ -414,7 +414,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           type="button"
           onClick={() => onTabChange('calendar')}
           className={`flex flex-col items-center gap-1 text-[10px] font-semibold ${
-            currentTab === 'calendar' ? 'text-blue-600' : 'text-neutral-500'
+            currentTab === 'calendar' ? 'text-red-600' : 'text-neutral-500'
           }`}
         >
           <Calendar className="w-5 h-5" />
@@ -425,7 +425,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           type="button"
           onClick={() => onTabChange('my-events')}
           className={`flex flex-col items-center gap-1 text-[10px] font-semibold ${
-            currentTab === 'my-events' ? 'text-blue-600' : 'text-neutral-500'
+            currentTab === 'my-events' ? 'text-red-600' : 'text-neutral-500'
           }`}
         >
           <Ticket className="w-5 h-5" />
@@ -436,7 +436,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           type="button"
           onClick={() => onTabChange('clubs')}
           className={`flex flex-col items-center gap-1 text-[10px] font-semibold ${
-            currentTab === 'clubs' ? 'text-blue-600' : 'text-neutral-500'
+            currentTab === 'clubs' ? 'text-red-600' : 'text-neutral-500'
           }`}
         >
           <Users className="w-5 h-5" />
@@ -448,7 +448,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             type="button"
             onClick={() => onTabChange('organizer')}
             className={`flex flex-col items-center gap-1 text-[10px] font-semibold ${
-              currentTab === 'organizer' ? 'text-blue-600' : 'text-neutral-500'
+              currentTab === 'organizer' ? 'text-red-600' : 'text-neutral-500'
             }`}
           >
             <Layers className="w-5 h-5" />
@@ -459,7 +459,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             type="button"
             onClick={() => onTabChange('campus-map')}
             className={`flex flex-col items-center gap-1 text-[10px] font-semibold ${
-              currentTab === 'campus-map' ? 'text-blue-600' : 'text-neutral-500'
+              currentTab === 'campus-map' ? 'text-red-600' : 'text-neutral-500'
             }`}
           >
             <MapPin className="w-5 h-5" />

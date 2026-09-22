@@ -76,7 +76,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({ certificate,
 
                 <p className="text-xs font-sans text-neutral-500 italic">This is proudly presented to</p>
 
-                <h3 className="text-xl sm:text-2xl font-black text-blue-900 border-b-2 border-amber-500/60 pb-1 max-w-sm mx-auto">
+                <h3 className="text-xl sm:text-2xl font-black text-red-900 border-b-2 border-amber-500/60 pb-1 max-w-sm mx-auto">
                   {verifiedCert.studentName}
                 </h3>
 
@@ -93,7 +93,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({ certificate,
                   </div>
                   <div className="text-right">
                     <p className="text-[10px] text-neutral-400 uppercase tracking-wider">Verification ID</p>
-                    <p className="font-mono font-bold text-blue-800">{verifiedCert.certificateId}</p>
+                    <p className="font-mono font-bold text-red-800">{verifiedCert.certificateId}</p>
                     <span className="inline-flex items-center gap-1 text-[10px] text-emerald-700 font-bold mt-0.5">
                       <CheckCircle2 className="w-3 h-3" /> Digitally Verified
                     </span>
@@ -148,7 +148,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({ certificate,
                   );
                   alert('Verification link copied to clipboard!');
                 }}
-                className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold flex items-center gap-1.5"
+                className="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold flex items-center gap-1.5"
               >
                 <ShieldCheck className="w-4 h-4" />
                 Copy Credential Link

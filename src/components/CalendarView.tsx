@@ -74,7 +74,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({ events, onSelectEven
     switch (cat.toLowerCase()) {
       case 'technical':
       case 'hackathons':
-        return 'bg-blue-500 text-white';
+        return 'bg-red-500 text-white';
       case 'workshops':
         return 'bg-indigo-600 text-white';
       case 'cultural':
@@ -100,7 +100,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({ events, onSelectEven
       {/* Calendar Header with Month Switcher and Filters */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-neutral-200">
         <div className="flex items-center gap-3">
-          <div className="p-2.5 bg-blue-50 text-blue-600 rounded-2xl">
+          <div className="p-2.5 bg-red-50 text-red-600 rounded-2xl">
             <CalendarIcon className="w-6 h-6" />
           </div>
           <div>
@@ -191,14 +191,14 @@ export const CalendarView: React.FC<CalendarViewProps> = ({ events, onSelectEven
               key={`day-${dayNum}`}
               className={`min-h-[85px] sm:min-h-[110px] rounded-2xl border p-1.5 flex flex-col justify-between transition-colors ${
                 isToday
-                  ? 'bg-blue-50/40 border-blue-300 ring-1 ring-blue-300'
+                  ? 'bg-red-50/40 border-red-300 ring-1 ring-red-300'
                   : 'bg-white border-neutral-200/80 hover:border-neutral-300'
               }`}
             >
               <div className="flex items-center justify-between">
                 <span
                   className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
-                    isToday ? 'bg-blue-600 text-white' : 'text-neutral-700'
+                    isToday ? 'bg-red-600 text-white' : 'text-neutral-700'
                   }`}
                 >
                   {dayNum}
