@@ -49,7 +49,7 @@ export const CampusMapView: React.FC<CampusMapViewProps> = ({
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-5 border-b border-neutral-200">
           <div>
             <h2 className="text-xl font-extrabold text-neutral-900 flex items-center gap-2">
-              <MapPin className="w-5 h-5 text-blue-600" />
+              <MapPin className="w-5 h-5 text-red-600" />
               Interactive Campus Map & Venues
             </h2>
             <p className="text-xs text-neutral-500 font-medium mt-0.5">
@@ -66,7 +66,7 @@ export const CampusMapView: React.FC<CampusMapViewProps> = ({
 
             {/* Map Header */}
             <div className="relative z-10 flex items-center justify-between text-slate-300 text-xs">
-              <span className="font-bold tracking-wider text-slate-400 uppercase">Apex Central Quadrangle</span>
+              <span className="font-bold tracking-wider text-slate-400 uppercase">KSIT Central Quadrangle</span>
               <span className="bg-slate-800/80 px-2.5 py-1 rounded-full text-[11px] font-mono border border-slate-700">
                 Live GPS Grid Active
               </span>
@@ -86,7 +86,7 @@ export const CampusMapView: React.FC<CampusMapViewProps> = ({
                     style={{ left: `${v.coordinates.x}%`, top: `${v.coordinates.y}%` }}
                     className={`absolute -translate-x-1/2 -translate-y-1/2 p-2 rounded-2xl transition-all duration-200 flex items-center gap-2 group ${
                       isSelected
-                        ? 'bg-blue-600 text-white ring-4 ring-blue-500/40 z-20 scale-110 shadow-xl'
+                        ? 'bg-red-600 text-white ring-4 ring-red-500/40 z-20 scale-110 shadow-xl'
                         : 'bg-slate-800/90 hover:bg-slate-700 text-slate-200 border border-slate-700 z-10 hover:scale-105'
                     }`}
                   >
@@ -105,7 +105,7 @@ export const CampusMapView: React.FC<CampusMapViewProps> = ({
             {/* Map Legend */}
             <div className="relative z-10 flex items-center gap-4 text-[11px] text-slate-400 border-t border-slate-800 pt-3">
               <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-blue-500 inline-block" /> Selected Venue
+                <span className="w-2.5 h-2.5 rounded-full bg-red-500 inline-block" /> Selected Venue
               </span>
               <span className="flex items-center gap-1.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block" /> Scheduled Events Today
@@ -118,7 +118,7 @@ export const CampusMapView: React.FC<CampusMapViewProps> = ({
             {activeVenue ? (
               <div className="bg-neutral-50 rounded-3xl p-5 border border-neutral-200 space-y-4">
                 <div>
-                  <span className="text-[10px] font-bold text-blue-600 uppercase tracking-wider bg-blue-100/80 px-2 py-0.5 rounded-md">
+                  <span className="text-[10px] font-bold text-red-600 uppercase tracking-wider bg-red-100/80 px-2 py-0.5 rounded-md">
                     {activeVenue.building}
                   </span>
                   <h3 className="text-lg font-bold text-neutral-900 mt-1.5">{activeVenue.name}</h3>
@@ -157,14 +157,14 @@ export const CampusMapView: React.FC<CampusMapViewProps> = ({
                       <div
                         key={evt.id}
                         onClick={() => onSelectEvent(evt)}
-                        className="p-3 bg-white rounded-2xl border border-neutral-200 hover:border-blue-400 transition-colors cursor-pointer space-y-1 group"
+                        className="p-3 bg-white rounded-2xl border border-neutral-200 hover:border-red-400 transition-colors cursor-pointer space-y-1 group"
                       >
-                        <h5 className="text-xs font-bold text-neutral-900 group-hover:text-blue-600 transition-colors line-clamp-1">
+                        <h5 className="text-xs font-bold text-neutral-900 group-hover:text-red-600 transition-colors line-clamp-1">
                           {evt.title}
                         </h5>
                         <div className="flex items-center justify-between text-[11px] text-neutral-500">
                           <span>{evt.date} • {evt.startTime}</span>
-                          <span className="text-blue-600 font-semibold group-hover:underline flex items-center gap-0.5">
+                          <span className="text-red-600 font-semibold group-hover:underline flex items-center gap-0.5">
                             Details <ArrowRight className="w-3 h-3" />
                           </span>
                         </div>

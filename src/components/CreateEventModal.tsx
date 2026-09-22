@@ -224,7 +224,7 @@ export const CreateEventModal: React.FC<CreateEventModalProps> = ({ onClose, onE
         {/* Stepper progress indicator */}
         <div className="w-full bg-neutral-100 h-1">
           <div
-            className="bg-blue-600 h-full transition-all duration-300"
+            className="bg-red-600 h-full transition-all duration-300"
             style={{ width: `${(step / 4) * 100}%` }}
           />
         </div>
@@ -240,16 +240,16 @@ export const CreateEventModal: React.FC<CreateEventModalProps> = ({ onClose, onE
 
           {/* AI Detected Banner */}
           {aiDetectedBanner && (
-            <div className="p-3.5 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 flex items-start gap-2.5 text-xs text-blue-900">
-              <Sparkles className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+            <div className="p-3.5 rounded-2xl bg-gradient-to-r from-red-50 to-indigo-50 border border-red-200 flex items-start gap-2.5 text-xs text-red-900">
+              <Sparkles className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
               <div className="flex-1">
                 <p className="font-bold">✨ AI Poster Extraction Applied</p>
-                <p className="text-blue-700 mt-0.5">{aiDetectedBanner}</p>
+                <p className="text-red-700 mt-0.5">{aiDetectedBanner}</p>
               </div>
               <button
                 type="button"
                 onClick={() => setAiDetectedBanner(null)}
-                className="text-blue-500 hover:text-blue-700 text-xs font-bold"
+                className="text-red-500 hover:text-red-700 text-xs font-bold"
               >
                 ✕
               </button>
@@ -284,8 +284,8 @@ export const CreateEventModal: React.FC<CreateEventModalProps> = ({ onClose, onE
           {step === 1 && (
             <div className="space-y-4">
               {/* AI Poster Uploader Card */}
-              <div className="p-4 rounded-2xl border-2 border-dashed border-blue-200 bg-blue-50/40 hover:bg-blue-50/70 transition-colors text-center space-y-2">
-                <div className="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mx-auto">
+              <div className="p-4 rounded-2xl border-2 border-dashed border-red-200 bg-red-50/40 hover:bg-red-50/70 transition-colors text-center space-y-2">
+                <div className="w-10 h-10 rounded-full bg-red-100 text-red-600 flex items-center justify-center mx-auto">
                   {isExtractingAI ? <Sparkles className="w-5 h-5 animate-spin" /> : <Upload className="w-5 h-5" />}
                 </div>
                 <div>
@@ -305,7 +305,7 @@ export const CreateEventModal: React.FC<CreateEventModalProps> = ({ onClose, onE
                   type="button"
                   disabled={isExtractingAI}
                   onClick={() => fileInputRef.current?.click()}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-xs disabled:opacity-50"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-semibold shadow-xs disabled:opacity-50"
                 >
                   <Sparkles className="w-3.5 h-3.5" />
                   {isExtractingAI ? 'Analyzing Poster with AI...' : 'Select Poster Image'}
@@ -320,11 +320,11 @@ export const CreateEventModal: React.FC<CreateEventModalProps> = ({ onClose, onE
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Apex Robotics Hackathon 2026"
+                  placeholder="e.g. KSIT Robotics Hackathon 2026"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   onBlur={checkDuplicateEvent}
-                  className="w-full px-3 py-2.5 rounded-xl border border-neutral-300 text-sm font-semibold text-neutral-900 focus:ring-2 focus:ring-blue-500 outline-none"
+                  className="w-full px-3 py-2.5 rounded-xl border border-neutral-300 text-sm font-semibold text-neutral-900 focus:ring-2 focus:ring-red-500 outline-none"
                 />
               </div>
 
@@ -483,7 +483,7 @@ export const CreateEventModal: React.FC<CreateEventModalProps> = ({ onClose, onE
                       type="checkbox"
                       checked={waitlistEnabled}
                       onChange={(e) => setWaitlistEnabled(e.target.checked)}
-                      className="w-4 h-4 text-blue-600 rounded-md"
+                      className="w-4 h-4 text-red-600 rounded-md"
                     />
                     <span className="font-semibold text-neutral-800">Enable automated waitlist if seats fill up</span>
                   </label>
@@ -527,7 +527,7 @@ export const CreateEventModal: React.FC<CreateEventModalProps> = ({ onClose, onE
                   <button
                     type="button"
                     onClick={addCustomField}
-                    className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-blue-300 bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-semibold"
+                    className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg border border-red-300 bg-red-50 hover:bg-red-100 text-red-700 text-xs font-semibold"
                   >
                     <Plus className="w-3.5 h-3.5" />
                     Add Question
@@ -562,7 +562,7 @@ export const CreateEventModal: React.FC<CreateEventModalProps> = ({ onClose, onE
                             updated[index].required = e.target.checked;
                             setCustomFields(updated);
                           }}
-                          className="w-3.5 h-3.5 text-blue-600 rounded"
+                          className="w-3.5 h-3.5 text-red-600 rounded"
                         />
                         <span>Required</span>
                       </label>
@@ -630,9 +630,9 @@ export const CreateEventModal: React.FC<CreateEventModalProps> = ({ onClose, onE
                 />
               </div>
 
-              <div className="p-3 rounded-xl bg-blue-50 border border-blue-200 text-xs text-blue-900">
+              <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-xs text-red-900">
                 <p className="font-semibold">Campus Verification Notice</p>
-                <p className="text-blue-700 mt-0.5">
+                <p className="text-red-700 mt-0.5">
                   Your event will be submitted to the Dean of Student Affairs / Administration for official verification and badge assignment before public listing.
                 </p>
               </div>
@@ -673,7 +673,7 @@ export const CreateEventModal: React.FC<CreateEventModalProps> = ({ onClose, onE
                   setError(null);
                   setStep(step + 1);
                 }}
-                className="inline-flex items-center gap-1 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-xs transition-colors"
+                className="inline-flex items-center gap-1 px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold shadow-xs transition-colors"
               >
                 Next Step
                 <ArrowRight className="w-4 h-4" />
@@ -692,7 +692,7 @@ export const CreateEventModal: React.FC<CreateEventModalProps> = ({ onClose, onE
                   type="button"
                   disabled={submitting}
                   onClick={() => handleSubmit('pending_approval')}
-                  className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-xs transition-colors disabled:opacity-50 flex items-center gap-1.5"
+                  className="px-5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold shadow-xs transition-colors disabled:opacity-50 flex items-center gap-1.5"
                 >
                   {submitting ? 'Submitting...' : 'Submit for Approval'}
                   <Check className="w-4 h-4" />

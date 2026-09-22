@@ -14,8 +14,11 @@ import {
   ChevronDown,
   Sparkles,
   ExternalLink,
+  LogIn,
+  UserCircle,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext.tsx';
+import { AuthDialog, ProfileDialog } from './AuthDialog.tsx';
 import { api } from '../services/api.ts';
 import { NotificationItem, UserRole } from '../types.ts';
 
@@ -31,6 +34,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenCreateEvent,
 }) => {
   const { user, role, logout, fastSwitchRole } = useAuth();
+  const [showAuthDialog, setShowAuthDialog] = useState(false);
+  const [showProfileDialog, setShowProfileDialog] = useState(false);
   const [notifications, setNotifications] = useState<NotificationItem[]>([]);
   const [showNotifs, setShowNotifs] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
@@ -90,16 +95,12 @@ export const Navbar: React.FC<NavbarProps> = ({
               onClick={() => onTabChange('home')}
               className="flex items-center gap-2.5 text-left focus:outline-none"
             >
-              <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white font-black text-xl shadow-md shadow-blue-500/20">
-                <span className="tracking-tighter">CP</span>
-              </div>
-              <div>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-lg font-extrabold text-neutral-900 tracking-tight">CampusPulse</span>
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" title="Live Campus Network" />
-                </div>
-                <span className="text-[11px] text-neutral-500 font-medium block">Apex University • Fall 2026</span>
-              </div>
+<img
+              src="/campuspulse-ksit-logo.png"
+              alt="CampusPulse KSIT"
+              className="h-12 w-40 object-contain object-left"
+            />
+            <span className="sr-only">Live Campus Network</span>
             </button>
           </div>
 
@@ -173,11 +174,11 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onClick={() => onTabChange('organizer')}
                 className={`px-3 py-2 rounded-xl text-sm font-semibold transition-colors flex items-center gap-1.5 ${
                   currentTab === 'organizer'
-                    ? 'bg-blue-50 text-blue-700 border border-blue-200'
+                    ? 'bg-red-50 text-red-700 border border-red-200'
                     : 'text-neutral-600 hover:text-neutral-900 hover:bg-neutral-50'
                 }`}
               >
-                <Layers className="w-4 h-4 text-blue-600" />
+                <Layers className="w-4 h-4 text-red-600" />
                 Organizer Hub
               </button>
             )}
@@ -224,7 +225,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 type="button"
                 onClick={onOpenCreateEvent}
-                className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-sm transition-all"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold shadow-sm transition-all"
               >
                 <PlusCircle className="w-4 h-4" />
                 Create Event
@@ -254,7 +255,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <div className="flex items-center gap-1.5">
                       <span className="font-bold text-sm text-neutral-900">Campus Alerts</span>
                       {unreadCount > 0 && (
-                        <span className="text-[11px] bg-blue-100 text-blue-700 font-semibold px-2 py-0.5 rounded-full">
+                        <span className="text-[11px] bg-red-100 text-red-700 font-semibold px-2 py-0.5 rounded-full">
                           {unreadCount} new
                         </span>
                       )}
@@ -263,7 +264,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       <button
                         type="button"
                         onClick={handleMarkAllRead}
-                        className="text-xs text-blue-600 hover:underline font-medium"
+                        className="text-xs text-red-600 hover:underline font-medium"
                       >
                         Mark all read
                       </button>
@@ -280,7 +281,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                           className={`p-2.5 rounded-xl text-xs transition-colors border ${
                             notif.isRead
                               ? 'bg-neutral-50/50 border-neutral-100 text-neutral-600'
-                              : 'bg-blue-50/70 border-blue-100 text-neutral-900 font-medium'
+                              : 'bg-red-50/70 border-red-100 text-neutral-900 font-medium'
                           }`}
                         >
                           <div className="flex items-start justify-between gap-2">
@@ -299,7 +300,11 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
 
             {/* Profile Avatar & Menu */}
-            <div className="relative" ref={profileRef}>
+            {!user ? (
+              <button type="button" onClick={() => setShowAuthDialog(true)} className="inline-flex items-center gap-2 rounded-xl bg-[#c52a22] px-3.5 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-[#9f1e19]">
+                <LogIn className="w-4 h-4" /> Sign in
+              </button>
+            ) : <div className="relative" ref={profileRef}>
               <button
                 type="button"
                 onClick={() => setShowProfileMenu(!showProfileMenu)}
@@ -330,6 +335,17 @@ export const Navbar: React.FC<NavbarProps> = ({
                     <button
                       type="button"
                       onClick={() => {
+                        setShowProfileDialog(true);
+                        setShowProfileMenu(false);
+                      }}
+                      className="w-full text-left px-3 py-2 rounded-xl text-[#b51f1a] hover:bg-[#fff0eb] flex items-center gap-2"
+                    >
+                      <UserCircle className="w-3.5 h-3.5" />
+                      Edit Profile
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
                         onTabChange('my-events');
                         setShowProfileMenu(false);
                       }}
@@ -356,7 +372,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                           onTabChange('organizer');
                           setShowProfileMenu(false);
                         }}
-                        className="w-full text-left px-3 py-2 rounded-xl text-blue-700 hover:bg-blue-50 flex items-center gap-2"
+                        className="w-full text-left px-3 py-2 rounded-xl text-red-700 hover:bg-red-50 flex items-center gap-2"
                       >
                         <Layers className="w-3.5 h-3.5" />
                         Organizer Control Center
@@ -392,7 +408,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </div>
                 </div>
               )}
-            </div>
+            </div>}
           </div>
         </div>
       </header>
@@ -403,7 +419,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           type="button"
           onClick={() => onTabChange('home')}
           className={`flex flex-col items-center gap-1 text-[10px] font-semibold ${
-            currentTab === 'home' ? 'text-blue-600' : 'text-neutral-500'
+            currentTab === 'home' ? 'text-red-600' : 'text-neutral-500'
           }`}
         >
           <Compass className="w-5 h-5" />
@@ -414,7 +430,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           type="button"
           onClick={() => onTabChange('calendar')}
           className={`flex flex-col items-center gap-1 text-[10px] font-semibold ${
-            currentTab === 'calendar' ? 'text-blue-600' : 'text-neutral-500'
+            currentTab === 'calendar' ? 'text-red-600' : 'text-neutral-500'
           }`}
         >
           <Calendar className="w-5 h-5" />
@@ -425,7 +441,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           type="button"
           onClick={() => onTabChange('my-events')}
           className={`flex flex-col items-center gap-1 text-[10px] font-semibold ${
-            currentTab === 'my-events' ? 'text-blue-600' : 'text-neutral-500'
+            currentTab === 'my-events' ? 'text-red-600' : 'text-neutral-500'
           }`}
         >
           <Ticket className="w-5 h-5" />
@@ -436,7 +452,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           type="button"
           onClick={() => onTabChange('clubs')}
           className={`flex flex-col items-center gap-1 text-[10px] font-semibold ${
-            currentTab === 'clubs' ? 'text-blue-600' : 'text-neutral-500'
+            currentTab === 'clubs' ? 'text-red-600' : 'text-neutral-500'
           }`}
         >
           <Users className="w-5 h-5" />
@@ -448,7 +464,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             type="button"
             onClick={() => onTabChange('organizer')}
             className={`flex flex-col items-center gap-1 text-[10px] font-semibold ${
-              currentTab === 'organizer' ? 'text-blue-600' : 'text-neutral-500'
+              currentTab === 'organizer' ? 'text-red-600' : 'text-neutral-500'
             }`}
           >
             <Layers className="w-5 h-5" />
@@ -459,7 +475,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             type="button"
             onClick={() => onTabChange('campus-map')}
             className={`flex flex-col items-center gap-1 text-[10px] font-semibold ${
-              currentTab === 'campus-map' ? 'text-blue-600' : 'text-neutral-500'
+              currentTab === 'campus-map' ? 'text-red-600' : 'text-neutral-500'
             }`}
           >
             <MapPin className="w-5 h-5" />
@@ -467,6 +483,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
         )}
       </div>
+      {showAuthDialog && <AuthDialog onClose={() => setShowAuthDialog(false)} />}
+      {showProfileDialog && <ProfileDialog onClose={() => setShowProfileDialog(false)} />}
     </>
   );
 };

@@ -154,7 +154,7 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4">
         <div className="bg-white rounded-2xl p-8 max-w-sm w-full text-center space-y-3">
-          <div className="w-8 h-8 border-3 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto" />
+          <div className="w-8 h-8 border-3 border-red-600 border-t-transparent rounded-full animate-spin mx-auto" />
           <p className="text-sm font-semibold text-neutral-700">Loading campus event...</p>
         </div>
       </div>
@@ -175,7 +175,7 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
         {/* Sticky Header with Close and Actions */}
         <div className="sticky top-0 z-20 flex items-center justify-between px-4 sm:px-6 py-3.5 bg-white/95 backdrop-blur-md border-b border-neutral-200">
           <div className="flex items-center gap-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded-lg">
+            <span className="text-xs font-bold uppercase tracking-wider text-red-600 bg-red-50 px-2.5 py-1 rounded-lg">
               {event.category}
             </span>
             {event.verificationBadge === 'official' && (
@@ -250,7 +250,7 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
             <img src={event.posterUrl} alt={event.title} className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             <div className="absolute bottom-4 left-4 right-4 text-white">
-              <span className="text-xs font-medium text-blue-200 mb-1 block">Organized by {event.organizerName}</span>
+              <span className="text-xs font-medium text-red-200 mb-1 block">Organized by {event.organizerName}</span>
               <h2 className="text-xl sm:text-2xl font-black leading-tight drop-shadow-sm">{event.title}</h2>
             </div>
           </div>
@@ -258,7 +258,7 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
           {/* Key Logistics Matrix */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div className="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/80 flex items-start gap-3">
-              <div className="p-2 rounded-xl bg-blue-100/80 text-blue-700 shrink-0">
+              <div className="p-2 rounded-xl bg-red-100/80 text-red-700 shrink-0">
                 <Calendar className="w-4 h-4" />
               </div>
               <div>
@@ -287,7 +287,7 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
                       onClose();
                       onNavigateToVenue(event.venueId);
                     }}
-                    className="text-xs text-blue-600 font-medium hover:underline mt-1 flex items-center gap-1"
+                    className="text-xs text-red-600 font-medium hover:underline mt-1 flex items-center gap-1"
                   >
                     Locate on Campus Map <ChevronRight className="w-3 h-3" />
                   </button>
@@ -358,14 +358,14 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
 
           {/* Post-Event Attendance & Certificate / Feedback Status */}
           {event.hasAttended && (
-            <div className="p-4 rounded-2xl bg-blue-50 border border-blue-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div className="p-4 rounded-2xl bg-red-50 border border-red-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center shrink-0">
                   <Award className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-blue-950">Attendance Verified ✓</h4>
-                  <p className="text-xs text-blue-700">Your presence was recorded. You can now download your certificate.</p>
+                  <h4 className="text-sm font-bold text-red-950">Attendance Verified ✓</h4>
+                  <p className="text-xs text-red-700">Your presence was recorded. You can now download your certificate.</p>
                 </div>
               </div>
 
@@ -374,7 +374,7 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
                   <button
                     type="button"
                     onClick={() => onOpenFeedback(event)}
-                    className="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs flex items-center gap-1.5"
+                    className="px-3.5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-semibold text-xs flex items-center gap-1.5"
                   >
                     <MessageSquare className="w-4 h-4" />
                     Submit Feedback
@@ -404,7 +404,7 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
                 />
                 <div>
                   <h5 className="text-sm font-bold text-neutral-900">{event.speaker.name}</h5>
-                  <p className="text-xs text-blue-600 font-semibold">{event.speaker.role}</p>
+                  <p className="text-xs text-red-600 font-semibold">{event.speaker.role}</p>
                   {event.speaker.topic && (
                     <p className="text-xs text-neutral-600 mt-0.5">Session: "{event.speaker.topic}"</p>
                   )}
@@ -475,8 +475,8 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
 
           {/* Registration Form Expansion */}
           {showRegForm && !event.isRegistered && (
-            <form onSubmit={handleRegisterSubmit} className="p-4 sm:p-5 rounded-2xl bg-blue-50/70 border border-blue-200 space-y-3.5">
-              <div className="flex items-center justify-between pb-2 border-b border-blue-100">
+            <form onSubmit={handleRegisterSubmit} className="p-4 sm:p-5 rounded-2xl bg-red-50/70 border border-red-200 space-y-3.5">
+              <div className="flex items-center justify-between pb-2 border-b border-red-100">
                 <h4 className="text-sm font-bold text-neutral-900">Confirm Registration Details</h4>
                 <span className="text-xs text-neutral-500">Auto-filled from college profile</span>
               </div>
@@ -489,7 +489,7 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl bg-white border border-neutral-300 text-neutral-900 text-xs focus:ring-2 focus:ring-blue-500 outline-none"
+                    className="w-full px-3 py-2 rounded-xl bg-white border border-neutral-300 text-neutral-900 text-xs focus:ring-2 focus:ring-red-500 outline-none"
                   />
                 </div>
                 <div>
@@ -499,7 +499,7 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl bg-white border border-neutral-300 text-neutral-900 text-xs focus:ring-2 focus:ring-blue-500 outline-none"
+                    className="w-full px-3 py-2 rounded-xl bg-white border border-neutral-300 text-neutral-900 text-xs focus:ring-2 focus:ring-red-500 outline-none"
                   />
                 </div>
                 <div>
@@ -509,7 +509,7 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
                     required
                     value={formData.studentId}
                     onChange={(e) => setFormData({ ...formData, studentId: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl bg-white border border-neutral-300 text-neutral-900 text-xs focus:ring-2 focus:ring-blue-500 outline-none"
+                    className="w-full px-3 py-2 rounded-xl bg-white border border-neutral-300 text-neutral-900 text-xs focus:ring-2 focus:ring-red-500 outline-none"
                   />
                 </div>
                 <div>
@@ -519,14 +519,14 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
                     required
                     value={formData.department}
                     onChange={(e) => setFormData({ ...formData, department: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl bg-white border border-neutral-300 text-neutral-900 text-xs focus:ring-2 focus:ring-blue-500 outline-none"
+                    className="w-full px-3 py-2 rounded-xl bg-white border border-neutral-300 text-neutral-900 text-xs focus:ring-2 focus:ring-red-500 outline-none"
                   />
                 </div>
               </div>
 
               {/* Dynamic Custom Questions created by Organizer */}
               {event.customFields && event.customFields.length > 0 && (
-                <div className="pt-2 border-t border-blue-100 space-y-2.5">
+                <div className="pt-2 border-t border-red-100 space-y-2.5">
                   <p className="text-xs font-bold text-neutral-800">Organizer Questionnaire</p>
                   {event.customFields.map((field) => (
                     <div key={field.id} className="text-xs">
@@ -583,7 +583,7 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
                 <button
                   type="submit"
                   disabled={registering}
-                  className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs transition-colors shadow-sm disabled:opacity-50"
+                  className="px-5 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs transition-colors shadow-sm disabled:opacity-50"
                 >
                   {registering ? 'Securing Pass...' : isFull ? 'Confirm Waitlist Spot' : 'Confirm Free Registration'}
                 </button>
@@ -607,12 +607,12 @@ export const EventDetailsModal: React.FC<EventDetailsModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setShowRegForm(true)}
-                  className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-sm transition-all"
+                  className="px-6 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-sm shadow-sm transition-all"
                 >
                   {isFull && event.waitlistEnabled ? 'Join Waitlist' : 'Register Now'}
                 </button>
               ) : (
-                <span className="text-xs text-blue-600 font-medium">Complete form above</span>
+                <span className="text-xs text-red-600 font-medium">Complete form above</span>
               )}
             </div>
           )}

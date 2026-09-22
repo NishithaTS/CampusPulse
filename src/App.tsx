@@ -29,6 +29,7 @@ import { OrganizerDashboardView } from './components/OrganizerDashboardView.tsx'
 import { AdminDashboardView } from './components/AdminDashboardView.tsx';
 import { EventItem, Certificate } from './types.ts';
 import { api } from './services/api.ts';
+import AnimatedGradient from './components/AnimatedGradient.tsx';
 
 const CATEGORIES = [
   'All',
@@ -134,7 +135,7 @@ function MainContent() {
   const featuredEvents = events.filter((e) => e.isFeatured);
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] text-neutral-900 flex flex-col antialiased">
+    <div className="min-h-screen bg-[#fff8f2] text-[#171313] flex flex-col antialiased">
       {/* Top Navbar */}
       <Navbar
         currentTab={currentView}
@@ -147,12 +148,55 @@ function MainContent() {
         {/* VIEW 1: DISCOVER EVENTS */}
         {currentView === 'discover' && (
           <div className="space-y-6">
+            <section className="relative isolate min-h-[430px] overflow-hidden rounded-[2rem] bg-[#8f1515] text-white shadow-2xl shadow-red-950/20">
+              <AnimatedGradient
+                config={{
+                  preset: 'custom',
+                  color1: '#4b0707',
+                  color2: '#a91414',
+                  color3: '#ff6a4d',
+                  rotation: -38,
+                  proportion: 58,
+                  scale: 0.62,
+                  speed: 12,
+                  distortion: 32,
+                  swirl: 68,
+                  swirlIterations: 9,
+                  softness: 88,
+                  shape: 'Edge',
+                  shapeSize: 42,
+                }}
+                noise={{ opacity: 0.18, scale: 0.7 }}
+                className="-z-10 opacity-95"
+              />
+              <div className="absolute inset-0 -z-10 bg-gradient-to-br from-black/35 via-transparent to-red-950/30" />
+              <div className="relative flex min-h-[430px] flex-col justify-between p-6 sm:p-10 lg:p-14">
+                <div className="flex items-start justify-between gap-6 text-[11px] font-bold uppercase tracking-[0.24em] text-white/75">
+                  <span>CampusPulse / KSIT</span>
+                  <span className="hidden sm:block">Fall 2026 / Live Network</span>
+                </div>
+                <div className="max-w-4xl">
+                  <p className="mb-5 text-xs font-bold uppercase tracking-[0.3em] text-orange-100">When campus life needs space</p>
+                  <h1 className="max-w-3xl text-5xl font-black leading-[0.9] tracking-[-0.06em] sm:text-7xl lg:text-[7.5rem]">
+                    Find your<br />next moment.
+                  </h1>
+                  <p className="mt-7 max-w-xl text-sm leading-6 text-white/80 sm:text-base">
+                    The live pulse of KSIT — discover events, meet your people, and make every week count.
+                  </p>
+                </div>
+                <div className="flex flex-wrap items-end justify-between gap-6 border-t border-white/25 pt-5 text-xs font-bold uppercase tracking-[0.18em] text-white/75">
+                  <span>Scroll to explore</span>
+                  <span>01 / 04 — Discover</span>
+                </div>
+              </div>
+            </section>
+
             {/* Hero / Filter Section */}
-            <div className="bg-white rounded-3xl p-5 sm:p-7 border border-neutral-200/90 shadow-xs space-y-5">
+            <div className="bg-[#fffdfb] rounded-3xl p-5 sm:p-7 border border-[#eaded7]/90 shadow-xs space-y-5">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                    <span className="text-xs font-bold text-[#b51f1a] bg-[#fff0eb] px-2.5 py-0.5 rounded-full uppercase tracking-wider">
                       Live Campus Feed
                     </span>
                     <span className="text-xs text-neutral-400">• Main Campus (Fall 2026)</span>
@@ -170,7 +214,7 @@ function MainContent() {
                     placeholder="Search hackathons, workshops, guest lectures, sports..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-neutral-50 border border-neutral-200 text-xs sm:text-sm font-medium outline-none focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-neutral-50 border border-[#eaded7] text-xs sm:text-sm font-medium outline-none focus:bg-[#fffdfb] focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
                   />
                   {searchQuery && (
                     <button
@@ -208,7 +252,7 @@ function MainContent() {
                   <select
                     value={selectedDepartment}
                     onChange={(e) => setSelectedDepartment(e.target.value)}
-                    className="px-3 py-1.5 rounded-xl border border-neutral-300 text-xs bg-white text-neutral-700 outline-none"
+                    className="px-3 py-1.5 rounded-xl border border-neutral-300 text-xs bg-[#fffdfb] text-neutral-700 outline-none"
                   >
                     {DEPARTMENTS.map((dept) => (
                       <option key={dept} value={dept}>
@@ -223,7 +267,7 @@ function MainContent() {
                     className={`px-3 py-1.5 rounded-xl border flex items-center gap-1.5 transition-colors ${
                       filterFeatured
                         ? 'bg-amber-500 text-white border-amber-500 shadow-2xs'
-                        : 'border-neutral-300 text-neutral-600 bg-white hover:bg-neutral-50'
+                        : 'border-neutral-300 text-neutral-600 bg-[#fffdfb] hover:bg-neutral-50'
                     }`}
                   >
                     <Flame className="w-3.5 h-3.5" />
@@ -236,7 +280,7 @@ function MainContent() {
                     className={`px-3 py-1.5 rounded-xl border flex items-center gap-1.5 transition-colors ${
                       filterOnlyFreeFood
                         ? 'bg-emerald-600 text-white border-emerald-600 shadow-2xs'
-                        : 'border-neutral-300 text-neutral-600 bg-white hover:bg-neutral-50'
+                        : 'border-neutral-300 text-neutral-600 bg-[#fffdfb] hover:bg-neutral-50'
                     }`}
                   >
                     <Coffee className="w-3.5 h-3.5" />
@@ -248,8 +292,8 @@ function MainContent() {
                     onClick={() => setFilterCertificates(!filterCertificates)}
                     className={`px-3 py-1.5 rounded-xl border flex items-center gap-1.5 transition-colors ${
                       filterCertificates
-                        ? 'bg-blue-600 text-white border-blue-600 shadow-2xs'
-                        : 'border-neutral-300 text-neutral-600 bg-white hover:bg-neutral-50'
+                        ? 'bg-[#c52a22] text-white border-red-600 shadow-2xs'
+                        : 'border-neutral-300 text-neutral-600 bg-[#fffdfb] hover:bg-neutral-50'
                     }`}
                   >
                     <Award className="w-3.5 h-3.5" />
@@ -262,7 +306,7 @@ function MainContent() {
                       setSelectedCertificate(null);
                       setShowCertificateModal(true);
                     }}
-                    className="ml-auto text-xs text-neutral-500 hover:text-blue-600 font-bold underline"
+                    className="ml-auto text-xs text-neutral-500 hover:text-[#b51f1a] font-bold underline"
                   >
                     Verify a Certificate ID
                   </button>
@@ -317,11 +361,11 @@ function MainContent() {
 
               {loadingEvents ? (
                 <div className="p-16 text-center text-neutral-400">
-                  <div className="w-8 h-8 border-3 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+                  <div className="w-8 h-8 border-3 border-red-600 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
                   <p className="text-xs font-semibold">Loading verified campus events...</p>
                 </div>
               ) : displayedEvents.length === 0 ? (
-                <div className="p-16 text-center bg-white rounded-3xl border border-neutral-200">
+                <div className="p-16 text-center bg-[#fffdfb] rounded-3xl border border-[#eaded7]">
                   <Compass className="w-12 h-12 text-neutral-300 mx-auto mb-3" />
                   <h3 className="text-base font-bold text-neutral-800">No events found matching your criteria</h3>
                   <p className="text-xs text-neutral-500 mt-1 max-w-sm mx-auto">
@@ -337,7 +381,7 @@ function MainContent() {
                       setFilterCertificates(false);
                       setFilterFeatured(false);
                     }}
-                    className="mt-4 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-xs"
+                    className="mt-4 px-4 py-2 rounded-xl bg-[#c52a22] hover:bg-[#9f1e19] text-white text-xs font-bold shadow-xs"
                   >
                     Reset All Filters
                   </button>
@@ -422,10 +466,10 @@ function MainContent() {
       </main>
 
       {/* FOOTER */}
-      <footer className="mt-auto border-t border-neutral-200/80 bg-white py-6">
+      <footer className="mt-auto border-t border-[#eaded7]/80 bg-[#fffdfb] py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-500">
-          <div className="flex items-center gap-2">
-            <span className="font-bold text-neutral-900">CampusPulse</span>
+          <div className="flex items-center gap-3">
+            <img src="/campuspulse-ksit-logo.png" alt="CampusPulse KSIT" className="h-10 w-32 object-contain object-left" />
             <span>• Verified University Event Management & Discovery Platform</span>
           </div>
           <div className="flex items-center gap-4">
@@ -435,12 +479,12 @@ function MainContent() {
                 setSelectedCertificate(null);
                 setShowCertificateModal(true);
               }}
-              className="hover:text-blue-600 font-semibold"
+              className="hover:text-[#b51f1a] font-semibold"
             >
               Verify Certificate
             </button>
             <span>•</span>
-            <span className="font-mono text-neutral-400">Apex University v2.4 (Active)</span>
+            <span className="font-mono text-neutral-400">KSIT v2.4 (Active)</span>
           </div>
         </div>
       </footer>

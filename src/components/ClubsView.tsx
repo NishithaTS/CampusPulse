@@ -107,7 +107,7 @@ export const ClubsView: React.FC<ClubsViewProps> = ({ onSelectEvent }) => {
                   className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-colors shadow-xs ${
                     club.isFollowed
                       ? 'bg-neutral-100 text-neutral-800 hover:bg-neutral-200'
-                      : 'bg-blue-600 hover:bg-blue-700 text-white'
+                      : 'bg-red-600 hover:bg-red-700 text-white'
                   }`}
                 >
                   {club.isFollowed ? 'Following' : '+ Follow'}
@@ -115,13 +115,13 @@ export const ClubsView: React.FC<ClubsViewProps> = ({ onSelectEvent }) => {
               </div>
 
               <div className="flex items-center gap-1.5 mb-1">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-red-600 bg-red-50 px-2 py-0.5 rounded-md">
                   {club.category}
                 </span>
                 <span className="text-[11px] text-neutral-400 font-mono">[{club.code}]</span>
               </div>
 
-              <h3 className="text-base font-bold text-neutral-900 group-hover:text-blue-600 transition-colors">
+              <h3 className="text-base font-bold text-neutral-900 group-hover:text-red-600 transition-colors">
                 {club.name}
               </h3>
               <p className="text-xs text-neutral-600 mt-1.5 line-clamp-2 leading-relaxed">
@@ -134,7 +134,7 @@ export const ClubsView: React.FC<ClubsViewProps> = ({ onSelectEvent }) => {
                 <Users className="w-3.5 h-3.5" />
                 {club.followedCount} followers
               </span>
-              <span className="font-semibold text-blue-600 group-hover:underline flex items-center gap-1">
+              <span className="font-semibold text-red-600 group-hover:underline flex items-center gap-1">
                 View Club Page <ArrowRight className="w-3 h-3" />
               </span>
             </div>
@@ -156,7 +156,7 @@ export const ClubsView: React.FC<ClubsViewProps> = ({ onSelectEvent }) => {
                 <div>
                   <div className="flex items-center gap-2">
                     <h3 className="text-lg font-bold text-neutral-900">{selectedClub.name}</h3>
-                    <ShieldCheck className="w-4 h-4 text-blue-600" />
+                    <ShieldCheck className="w-4 h-4 text-red-600" />
                   </div>
                   <p className="text-xs text-neutral-500">{selectedClub.category} • Faculty: {selectedClub.facultyCoordinator}</p>
                 </div>
@@ -200,13 +200,13 @@ export const ClubsView: React.FC<ClubsViewProps> = ({ onSelectEvent }) => {
                         setSelectedClub(null);
                         onSelectEvent(e);
                       }}
-                      className="p-3 bg-white rounded-2xl border border-neutral-200 hover:border-blue-400 cursor-pointer flex items-center justify-between"
+                      className="p-3 bg-white rounded-2xl border border-neutral-200 hover:border-red-400 cursor-pointer flex items-center justify-between"
                     >
                       <div>
                         <h5 className="font-bold text-neutral-900">{e.title}</h5>
                         <span className="text-[11px] text-neutral-500">{e.date} • {e.venueName}</span>
                       </div>
-                      <span className="text-blue-600 font-semibold text-xs flex items-center gap-1">
+                      <span className="text-red-600 font-semibold text-xs flex items-center gap-1">
                         Register <ArrowRight className="w-3 h-3" />
                       </span>
                     </div>

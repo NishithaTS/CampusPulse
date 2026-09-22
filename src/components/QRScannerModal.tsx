@@ -186,7 +186,7 @@ export const QRScannerModal: React.FC<QRScannerModalProps> = ({
               type="button"
               onClick={() => setActiveTab('projector')}
               className={`flex-1 py-1.5 rounded-lg transition-colors ${
-                activeTab === 'projector' ? 'bg-white text-blue-700 shadow-xs' : 'text-neutral-600 hover:text-neutral-900'
+                activeTab === 'projector' ? 'bg-white text-red-700 shadow-xs' : 'text-neutral-600 hover:text-neutral-900'
               }`}
             >
               Project Session QR
@@ -209,7 +209,7 @@ export const QRScannerModal: React.FC<QRScannerModalProps> = ({
           {activeTab === 'pass' && (
             <div className="space-y-4 text-center">
               {/* College Pass Card Design */}
-              <div className="bg-gradient-to-b from-blue-600 to-indigo-700 rounded-3xl p-5 text-white shadow-lg space-y-4 relative overflow-hidden">
+              <div className="bg-gradient-to-b from-red-600 to-indigo-700 rounded-3xl p-5 text-white shadow-lg space-y-4 relative overflow-hidden">
                 <div className="flex items-center justify-between border-b border-white/20 pb-3">
                   <div className="flex items-center gap-2">
                     <span className="font-black text-sm tracking-wider">CAMPUSPULSE PASS</span>
@@ -228,18 +228,18 @@ export const QRScannerModal: React.FC<QRScannerModalProps> = ({
 
                 <div>
                   <h4 className="font-bold text-base text-white">{user?.name}</h4>
-                  <p className="text-xs text-blue-100">
+                  <p className="text-xs text-red-100">
                     Roll ID: {event.registrationDetails?.studentId || '2026-ST-104'} • {event.registrationDetails?.department || 'Engineering'}
                   </p>
                 </div>
 
                 <div className="pt-3 border-t border-white/20 grid grid-cols-2 gap-2 text-left text-xs">
                   <div>
-                    <span className="text-[10px] text-blue-200 block uppercase">Date & Time</span>
+                    <span className="text-[10px] text-red-200 block uppercase">Date & Time</span>
                     <span className="font-semibold text-white">{event.date} • {event.startTime}</span>
                   </div>
                   <div>
-                    <span className="text-[10px] text-blue-200 block uppercase">Venue</span>
+                    <span className="text-[10px] text-red-200 block uppercase">Venue</span>
                     <span className="font-semibold text-white truncate block">{event.venueName}</span>
                   </div>
                 </div>
@@ -285,9 +285,9 @@ export const QRScannerModal: React.FC<QRScannerModalProps> = ({
           {/* TAB 2: Organizer Projector Session QR */}
           {activeTab === 'projector' && (
             <div className="space-y-4 text-center">
-              <div className="p-3 rounded-2xl bg-blue-50 border border-blue-200 text-xs text-blue-900 text-left">
+              <div className="p-3 rounded-2xl bg-red-50 border border-red-200 text-xs text-red-900 text-left">
                 <p className="font-bold">🖥️ Auditorium / Entrance Display Mode</p>
-                <p className="text-blue-700 mt-0.5">
+                <p className="text-red-700 mt-0.5">
                   Project this QR code onto the stage screen or print at the entrance table. Attendees scan this with their CampusPulse app to verify attendance.
                 </p>
               </div>
@@ -306,7 +306,7 @@ export const QRScannerModal: React.FC<QRScannerModalProps> = ({
 
               <div className="flex items-center justify-center gap-4 text-xs font-semibold text-neutral-700">
                 <span className="flex items-center gap-1.5">
-                  <Users className="w-4 h-4 text-blue-600" />
+                  <Users className="w-4 h-4 text-red-600" />
                   Live Verified: <strong className="text-neutral-950 text-sm">{liveAttendedCount}</strong> / {event.registeredCount}
                 </span>
                 <span className="text-neutral-300">|</span>
@@ -336,12 +336,12 @@ export const QRScannerModal: React.FC<QRScannerModalProps> = ({
                       placeholder="e.g. CAMPUS-PASS-evt-..."
                       value={inputTicketCode}
                       onChange={(e) => setInputTicketCode(e.target.value)}
-                      className="flex-1 px-3 py-2.5 rounded-xl border border-neutral-300 text-xs font-mono font-medium outline-none focus:ring-2 focus:ring-blue-500"
+                      className="flex-1 px-3 py-2.5 rounded-xl border border-neutral-300 text-xs font-mono font-medium outline-none focus:ring-2 focus:ring-red-500"
                     />
                     <button
                       type="submit"
                       disabled={checkingIn || !inputTicketCode.trim()}
-                      className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-xs disabled:opacity-50"
+                      className="px-4 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-xs disabled:opacity-50"
                     >
                       {checkingIn ? 'Verifying...' : 'Verify Entry'}
                     </button>
@@ -376,7 +376,7 @@ export const QRScannerModal: React.FC<QRScannerModalProps> = ({
                     // Quick sample autofill for instant testing
                     setInputTicketCode(`CAMPUS-PASS-${event.id}-${user?.id}`);
                   }}
-                  className="text-blue-600 font-semibold hover:underline"
+                  className="text-red-600 font-semibold hover:underline"
                 >
                   Insert Test Pass
                 </button>

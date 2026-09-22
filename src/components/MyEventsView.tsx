@@ -71,7 +71,7 @@ export const MyEventsView: React.FC<MyEventsViewProps> = ({
   if (loading) {
     return (
       <div className="p-12 text-center text-neutral-500 text-xs font-semibold">
-        <div className="w-8 h-8 border-3 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+        <div className="w-8 h-8 border-3 border-red-600 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
         Loading your campus passes...
       </div>
     );
@@ -96,7 +96,7 @@ export const MyEventsView: React.FC<MyEventsViewProps> = ({
             activeTab === 'upcoming' ? 'bg-white text-neutral-900 shadow-xs' : 'text-neutral-600 hover:text-neutral-900'
           }`}
         >
-          <Ticket className="w-4 h-4 text-blue-600" />
+          <Ticket className="w-4 h-4 text-red-600" />
           Active Passes ({upcoming.length})
         </button>
 
@@ -168,7 +168,7 @@ export const MyEventsView: React.FC<MyEventsViewProps> = ({
 
                       <h3
                         onClick={() => onSelectEvent(evt)}
-                        className="text-base font-bold text-neutral-900 hover:text-blue-600 cursor-pointer line-clamp-1"
+                        className="text-base font-bold text-neutral-900 hover:text-red-600 cursor-pointer line-clamp-1"
                       >
                         {evt.title}
                       </h3>
@@ -190,7 +190,7 @@ export const MyEventsView: React.FC<MyEventsViewProps> = ({
                       <button
                         type="button"
                         onClick={() => onOpenQRPass(evt)}
-                        className="flex-1 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-2xs"
+                        className="flex-1 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-2xs"
                       >
                         <QrCode className="w-4 h-4" />
                         Show QR Pass
@@ -225,7 +225,7 @@ export const MyEventsView: React.FC<MyEventsViewProps> = ({
                   <div
                     key={evt.id}
                     onClick={() => onSelectEvent(evt)}
-                    className="bg-white rounded-3xl border border-neutral-200 p-5 shadow-sm hover:border-blue-400 cursor-pointer flex items-center gap-4 group"
+                    className="bg-white rounded-3xl border border-neutral-200 p-5 shadow-sm hover:border-red-400 cursor-pointer flex items-center gap-4 group"
                   >
                     <img
                       src={evt.posterUrl}
@@ -233,8 +233,8 @@ export const MyEventsView: React.FC<MyEventsViewProps> = ({
                       className="w-20 h-20 rounded-2xl object-cover border border-neutral-200 shrink-0 group-hover:scale-105 transition-transform"
                     />
                     <div className="flex-1 min-w-0">
-                      <span className="text-[10px] font-bold text-blue-600 uppercase tracking-wider">{evt.category}</span>
-                      <h4 className="text-sm font-bold text-neutral-900 truncate group-hover:text-blue-600">{evt.title}</h4>
+                      <span className="text-[10px] font-bold text-red-600 uppercase tracking-wider">{evt.category}</span>
+                      <h4 className="text-sm font-bold text-neutral-900 truncate group-hover:text-red-600">{evt.title}</h4>
                       <p className="text-xs text-neutral-500 mt-0.5">{evt.date} • {evt.venueName}</p>
                     </div>
                   </div>
@@ -271,7 +271,7 @@ export const MyEventsView: React.FC<MyEventsViewProps> = ({
                       <button
                         type="button"
                         onClick={() => onOpenFeedback(evt)}
-                        className="px-3 py-1.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold flex items-center gap-1"
+                        className="px-3 py-1.5 rounded-xl bg-red-50 hover:bg-red-100 text-red-700 font-semibold flex items-center gap-1"
                       >
                         <MessageSquare className="w-3.5 h-3.5" />
                         {evt.hasFeedback ? 'Update Feedback' : 'Give Feedback'}
@@ -320,7 +320,7 @@ export const MyEventsView: React.FC<MyEventsViewProps> = ({
                     </div>
 
                     <div>
-                      <h4 className="text-base font-bold text-neutral-900 group-hover:text-blue-600 transition-colors">
+                      <h4 className="text-base font-bold text-neutral-900 group-hover:text-red-600 transition-colors">
                         {cert.eventName}
                       </h4>
                       <p className="text-xs text-neutral-500 mt-0.5">Issued by {cert.collegeName} • {cert.date}</p>
@@ -330,7 +330,7 @@ export const MyEventsView: React.FC<MyEventsViewProps> = ({
                       <span className="text-emerald-700 font-semibold flex items-center gap-1">
                         <CheckCircle2 className="w-3.5 h-3.5" /> Authenticated
                       </span>
-                      <span className="text-blue-600 font-bold group-hover:underline flex items-center gap-1">
+                      <span className="text-red-600 font-bold group-hover:underline flex items-center gap-1">
                         View & Download <ExternalLink className="w-3 h-3" />
                       </span>
                     </div>

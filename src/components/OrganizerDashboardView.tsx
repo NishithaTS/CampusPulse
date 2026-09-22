@@ -114,7 +114,7 @@ export const OrganizerDashboardView: React.FC<OrganizerDashboardViewProps> = ({
   if (loading) {
     return (
       <div className="p-12 text-center text-neutral-500">
-        <div className="w-8 h-8 border-3 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+        <div className="w-8 h-8 border-3 border-red-600 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
         <p className="text-xs font-semibold">Loading organizer dashboard...</p>
       </div>
     );
@@ -143,7 +143,7 @@ export const OrganizerDashboardView: React.FC<OrganizerDashboardViewProps> = ({
         <button
           type="button"
           onClick={onOpenCreateEvent}
-          className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-xs transition-all"
+          className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold shadow-xs transition-all"
         >
           <PlusCircle className="w-4 h-4" />
           Create New Event
@@ -165,7 +165,7 @@ export const OrganizerDashboardView: React.FC<OrganizerDashboardViewProps> = ({
           </span>
           <div className="flex items-baseline gap-2">
             <span className="text-2xl sm:text-3xl font-black text-neutral-900">{metrics.totalEvents}</span>
-            <span className="text-xs text-blue-600 font-semibold">{metrics.upcomingEvents} active</span>
+            <span className="text-xs text-red-600 font-semibold">{metrics.upcomingEvents} active</span>
           </div>
         </div>
 
@@ -225,7 +225,7 @@ export const OrganizerDashboardView: React.FC<OrganizerDashboardViewProps> = ({
                   <td className="px-5 py-3.5">
                     <div
                       onClick={() => onSelectEvent(evt)}
-                      className="font-bold text-neutral-900 hover:text-blue-600 transition-colors cursor-pointer truncate max-w-xs"
+                      className="font-bold text-neutral-900 hover:text-red-600 transition-colors cursor-pointer truncate max-w-xs"
                     >
                       {evt.title}
                     </div>
@@ -274,7 +274,7 @@ export const OrganizerDashboardView: React.FC<OrganizerDashboardViewProps> = ({
                       className="px-2.5 py-1 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-800 font-semibold text-[11px] inline-flex items-center gap-1"
                       title="Open Live Attendance Scanner & Projector"
                     >
-                      <QrCode className="w-3.5 h-3.5 text-blue-600" />
+                      <QrCode className="w-3.5 h-3.5 text-red-600" />
                       QR Check-In
                     </button>
 
@@ -291,10 +291,10 @@ export const OrganizerDashboardView: React.FC<OrganizerDashboardViewProps> = ({
                     <button
                       type="button"
                       onClick={() => handleIssueCertificates(evt.id)}
-                      className="px-2.5 py-1 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold text-[11px] inline-flex items-center gap-1"
+                      className="px-2.5 py-1 rounded-lg bg-red-50 hover:bg-red-100 text-red-700 font-semibold text-[11px] inline-flex items-center gap-1"
                       title="Issue Certificates to Attendees"
                     >
-                      <Award className="w-3.5 h-3.5 text-blue-600" />
+                      <Award className="w-3.5 h-3.5 text-red-600" />
                       Certificates
                     </button>
                   </td>
@@ -349,9 +349,9 @@ export const OrganizerDashboardView: React.FC<OrganizerDashboardViewProps> = ({
                       <span className="text-emerald-700 block text-[10px] uppercase font-bold">Present (Verified)</span>
                       <span className="text-lg font-extrabold text-emerald-800">{rosterData.totalPresent}</span>
                     </div>
-                    <div className="p-3 rounded-2xl bg-blue-50 border border-blue-200">
-                      <span className="text-blue-700 block text-[10px] uppercase font-bold">Turnout Rate</span>
-                      <span className="text-lg font-extrabold text-blue-800">{rosterData.attendanceRate}%</span>
+                    <div className="p-3 rounded-2xl bg-red-50 border border-red-200">
+                      <span className="text-red-700 block text-[10px] uppercase font-bold">Turnout Rate</span>
+                      <span className="text-lg font-extrabold text-red-800">{rosterData.attendanceRate}%</span>
                     </div>
                   </div>
 
