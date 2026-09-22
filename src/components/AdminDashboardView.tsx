@@ -29,7 +29,7 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({ onSelect
   const [users, setUsers] = useState<User[]>([]);
   const [reports, setReports] = useState<EventReport[]>([]);
   const [settings, setSettings] = useState<any>({
-    collegeName: 'Apex University',
+    collegeName: 'KSIT',
     collegeEmailDomain: 'college.edu',
     allowExternalEmails: false,
     autoApproveVerifiedClubs: false,
@@ -600,7 +600,7 @@ export const AdminDashboardView: React.FC<AdminDashboardViewProps> = ({ onSelect
               <input
                 type="text"
                 required
-                placeholder="e.g. Apex Quantum Computing Society"
+                placeholder="e.g. KSIT Quantum Computing Society"
                 value={newClubName}
                 onChange={(e) => setNewClubName(e.target.value)}
                 className="w-full px-3 py-2 rounded-xl border border-neutral-300 outline-none"

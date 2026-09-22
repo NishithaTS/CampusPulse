@@ -66,7 +66,7 @@ export const CampusMapView: React.FC<CampusMapViewProps> = ({
 
             {/* Map Header */}
             <div className="relative z-10 flex items-center justify-between text-slate-300 text-xs">
-              <span className="font-bold tracking-wider text-slate-400 uppercase">Apex Central Quadrangle</span>
+              <span className="font-bold tracking-wider text-slate-400 uppercase">KSIT Central Quadrangle</span>
               <span className="bg-slate-800/80 px-2.5 py-1 rounded-full text-[11px] font-mono border border-slate-700">
                 Live GPS Grid Active
               </span>

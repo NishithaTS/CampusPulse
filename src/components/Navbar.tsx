@@ -98,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   <span className="text-lg font-extrabold text-neutral-900 tracking-tight">CampusPulse</span>
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" title="Live Campus Network" />
                 </div>
-                <span className="text-[11px] text-neutral-500 font-medium block">Apex University • Fall 2026</span>
+                <span className="text-[11px] text-neutral-500 font-medium block">KSIT • Fall 2026</span>
               </div>
             </button>
           </div>

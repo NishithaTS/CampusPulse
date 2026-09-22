@@ -172,7 +172,7 @@ function MainContent() {
               <div className="absolute inset-0 -z-10 bg-gradient-to-br from-black/35 via-transparent to-red-950/30" />
               <div className="relative flex min-h-[430px] flex-col justify-between p-6 sm:p-10 lg:p-14">
                 <div className="flex items-start justify-between gap-6 text-[11px] font-bold uppercase tracking-[0.24em] text-white/75">
-                  <span>CampusPulse / Apex University</span>
+                  <span>CampusPulse / KSIT</span>
                   <span className="hidden sm:block">Fall 2026 / Live Network</span>
                 </div>
                 <div className="max-w-4xl">
@@ -181,7 +181,7 @@ function MainContent() {
                     Find your<br />next moment.
                   </h1>
                   <p className="mt-7 max-w-xl text-sm leading-6 text-white/80 sm:text-base">
-                    The live pulse of Apex University — discover events, meet your people, and make every week count.
+                    The live pulse of KSIT — discover events, meet your people, and make every week count.
                   </p>
                 </div>
                 <div className="flex flex-wrap items-end justify-between gap-6 border-t border-white/25 pt-5 text-xs font-bold uppercase tracking-[0.18em] text-white/75">
@@ -484,7 +484,7 @@ function MainContent() {
               Verify Certificate
             </button>
             <span>•</span>
-            <span className="font-mono text-neutral-400">Apex University v2.4 (Active)</span>
+            <span className="font-mono text-neutral-400">KSIT v2.4 (Active)</span>
           </div>
         </div>
       </footer>

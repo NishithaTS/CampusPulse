@@ -320,7 +320,7 @@ export const CreateEventModal: React.FC<CreateEventModalProps> = ({ onClose, onE
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Apex Robotics Hackathon 2026"
+                  placeholder="e.g. KSIT Robotics Hackathon 2026"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   onBlur={checkDuplicateEvent}
