@@ -29,6 +29,7 @@ import { OrganizerDashboardView } from './components/OrganizerDashboardView.tsx'
 import { AdminDashboardView } from './components/AdminDashboardView.tsx';
 import { EventItem, Certificate } from './types.ts';
 import { api } from './services/api.ts';
+import AnimatedGradient from './components/AnimatedGradient.tsx';
 
 const CATEGORIES = [
   'All',
@@ -147,6 +148,49 @@ function MainContent() {
         {/* VIEW 1: DISCOVER EVENTS */}
         {currentView === 'discover' && (
           <div className="space-y-6">
+            <section className="relative isolate min-h-[430px] overflow-hidden rounded-[2rem] bg-[#8f1515] text-white shadow-2xl shadow-red-950/20">
+              <AnimatedGradient
+                config={{
+                  preset: 'custom',
+                  color1: '#4b0707',
+                  color2: '#a91414',
+                  color3: '#ff6a4d',
+                  rotation: -38,
+                  proportion: 58,
+                  scale: 0.62,
+                  speed: 12,
+                  distortion: 32,
+                  swirl: 68,
+                  swirlIterations: 9,
+                  softness: 88,
+                  shape: 'Edge',
+                  shapeSize: 42,
+                }}
+                noise={{ opacity: 0.18, scale: 0.7 }}
+                className="-z-10 opacity-95"
+              />
+              <div className="absolute inset-0 -z-10 bg-gradient-to-br from-black/35 via-transparent to-red-950/30" />
+              <div className="relative flex min-h-[430px] flex-col justify-between p-6 sm:p-10 lg:p-14">
+                <div className="flex items-start justify-between gap-6 text-[11px] font-bold uppercase tracking-[0.24em] text-white/75">
+                  <span>CampusPulse / Apex University</span>
+                  <span className="hidden sm:block">Fall 2026 / Live Network</span>
+                </div>
+                <div className="max-w-4xl">
+                  <p className="mb-5 text-xs font-bold uppercase tracking-[0.3em] text-orange-100">When campus life needs space</p>
+                  <h1 className="max-w-3xl text-5xl font-black leading-[0.9] tracking-[-0.06em] sm:text-7xl lg:text-[7.5rem]">
+                    Find your<br />next moment.
+                  </h1>
+                  <p className="mt-7 max-w-xl text-sm leading-6 text-white/80 sm:text-base">
+                    The live pulse of Apex University — discover events, meet your people, and make every week count.
+                  </p>
+                </div>
+                <div className="flex flex-wrap items-end justify-between gap-6 border-t border-white/25 pt-5 text-xs font-bold uppercase tracking-[0.18em] text-white/75">
+                  <span>Scroll to explore</span>
+                  <span>01 / 04 — Discover</span>
+                </div>
+              </div>
+            </section>
+
             {/* Hero / Filter Section */}
             <div className="bg-white rounded-3xl p-5 sm:p-7 border border-neutral-200/90 shadow-xs space-y-5">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
