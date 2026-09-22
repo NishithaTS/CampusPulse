@@ -468,8 +468,8 @@ function MainContent() {
       {/* FOOTER */}
       <footer className="mt-auto border-t border-[#eaded7]/80 bg-[#fffdfb] py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-500">
-          <div className="flex items-center gap-2">
-            <span className="font-bold text-neutral-900">CampusPulse</span>
+          <div className="flex items-center gap-3">
+            <img src="/campuspulse-ksit-logo.png" alt="CampusPulse KSIT" className="h-10 w-32 object-contain object-left" />
             <span>• Verified University Event Management & Discovery Platform</span>
           </div>
           <div className="flex items-center gap-4">

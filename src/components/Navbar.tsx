@@ -90,16 +90,12 @@ export const Navbar: React.FC<NavbarProps> = ({
               onClick={() => onTabChange('home')}
               className="flex items-center gap-2.5 text-left focus:outline-none"
             >
-              <div className="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center text-white font-black text-xl shadow-md shadow-red-500/20">
-                <span className="tracking-tighter">CP</span>
-              </div>
-              <div>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-lg font-extrabold text-neutral-900 tracking-tight">CampusPulse</span>
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" title="Live Campus Network" />
-                </div>
-                <span className="text-[11px] text-neutral-500 font-medium block">KSIT • Fall 2026</span>
-              </div>
+<img
+              src="/campuspulse-ksit-logo.png"
+              alt="CampusPulse KSIT"
+              className="h-12 w-40 object-contain object-left"
+            />
+            <span className="sr-only">Live Campus Network</span>
             </button>
           </div>
 
