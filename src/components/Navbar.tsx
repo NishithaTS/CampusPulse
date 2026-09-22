@@ -14,8 +14,11 @@ import {
   ChevronDown,
   Sparkles,
   ExternalLink,
+  LogIn,
+  UserCircle,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext.tsx';
+import { AuthDialog, ProfileDialog } from './AuthDialog.tsx';
 import { api } from '../services/api.ts';
 import { NotificationItem, UserRole } from '../types.ts';
 
@@ -31,6 +34,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenCreateEvent,
 }) => {
   const { user, role, logout, fastSwitchRole } = useAuth();
+  const [showAuthDialog, setShowAuthDialog] = useState(false);
+  const [showProfileDialog, setShowProfileDialog] = useState(false);
   const [notifications, setNotifications] = useState<NotificationItem[]>([]);
   const [showNotifs, setShowNotifs] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
@@ -295,7 +300,11 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
 
             {/* Profile Avatar & Menu */}
-            <div className="relative" ref={profileRef}>
+            {!user ? (
+              <button type="button" onClick={() => setShowAuthDialog(true)} className="inline-flex items-center gap-2 rounded-xl bg-[#c52a22] px-3.5 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-[#9f1e19]">
+                <LogIn className="w-4 h-4" /> Sign in
+              </button>
+            ) : <div className="relative" ref={profileRef}>
               <button
                 type="button"
                 onClick={() => setShowProfileMenu(!showProfileMenu)}
@@ -323,6 +332,17 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </div>
 
                   <div className="space-y-1 text-xs font-semibold">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setShowProfileDialog(true);
+                        setShowProfileMenu(false);
+                      }}
+                      className="w-full text-left px-3 py-2 rounded-xl text-[#b51f1a] hover:bg-[#fff0eb] flex items-center gap-2"
+                    >
+                      <UserCircle className="w-3.5 h-3.5" />
+                      Edit Profile
+                    </button>
                     <button
                       type="button"
                       onClick={() => {
@@ -388,7 +408,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </div>
                 </div>
               )}
-            </div>
+            </div>}
           </div>
         </div>
       </header>
@@ -463,6 +483,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
         )}
       </div>
+      {showAuthDialog && <AuthDialog onClose={() => setShowAuthDialog(false)} />}
+      {showProfileDialog && <ProfileDialog onClose={() => setShowProfileDialog(false)} />}
     </>
   );
 };

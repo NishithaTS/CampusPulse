@@ -46,25 +46,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   useEffect(() => {
-    // If no token exists initially, auto-login as default demo student for immediate interactivity
-    const init = async () => {
-      const existingToken = authStorage.getToken();
-      if (!existingToken) {
-        try {
-          const res = await api.login({ email: 'arjun.mehta@college.edu', password: 'password123' });
-          authStorage.setToken(res.token);
-          setUser(res.user);
-          const me = await api.getMe();
-          setProfile(me.profile);
-          setLoading(false);
-          return;
-        } catch (e) {
-          // If fallback fails, just proceed
-        }
-      }
-      await refreshUser();
-    };
-    init();
+    refreshUser();
   }, []);
 
   const login = async (credentials: { email: string; password: string }) => {
