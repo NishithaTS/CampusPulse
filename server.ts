@@ -1,4 +1,5 @@
 import express from 'express';
+import { createServer as createHttpServer } from 'node:http';
 import path from 'path';
 import crypto from 'crypto';
 import QRCode from 'qrcode';
@@ -33,6 +34,7 @@ const PORT = 3000;
 
 async function startServer() {
   const app = express();
+  const httpServer = createHttpServer(app);
 
   // Support JSON and urlencoded with generous limits for poster images
   app.use(express.json({ limit: '15mb' }));
@@ -1591,10 +1593,10 @@ async function startServer() {
   // ----------------------------------------------------
 
   if (process.env.NODE_ENV !== 'production') {
-    const vite = await createViteServer({
-      server: { middlewareMode: true },
-      appType: 'spa',
-    });
+  const vite = await createViteServer({
+    server: { middlewareMode: true, hmr: { server: httpServer } },
+    appType: 'spa',
+  });
     app.use(vite.middlewares);
   } else {
     const distPath = path.join(process.cwd(), 'dist');
@@ -1604,7 +1606,7 @@ async function startServer() {
     });
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
+  httpServer.listen(PORT, '0.0.0.0', () => {
     console.log(`CampusPulse server active on http://0.0.0.0:${PORT}`);
   });
 }
