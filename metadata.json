@@ -1,0 +1,6 @@
+{
+  "name": "CampusPulse",
+  "description": "Centralized digital platform for college event discovery, registration, QR attendance, club engagement, and administration.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
