@@ -1,13 +1,49 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { User, UserRole } from '../types.ts';
-import { api, authStorage } from '../services/api.ts';
+const DEMO_SESSION_KEY = 'campuspulse-demo-session';
+const DEMO_PROFILE_KEY = 'campuspulse-demo-profile';
+
+const defaultDemoUser: User = {
+  id: 'demo-ksit-student',
+  email: 'student@ksit.edu',
+  name: 'KSIT Student',
+  role: 'student',
+  campus: 'KSIT',
+  createdAt: new Date().toISOString(),
+};
+
+const defaultDemoProfile = {
+  id: 'demo-ksit-profile',
+  userId: defaultDemoUser.id,
+  studentId: 'KSIT-2026-001',
+  department: 'Computer Science',
+  year: '1',
+  phone: '',
+  interests: ['Technology', 'Innovation'],
+};
+
+const readDemoSession = () => {
+  try {
+    return JSON.parse(localStorage.getItem(DEMO_SESSION_KEY) || 'null') as User | null;
+  } catch {
+    return null;
+  }
+};
+
+const readDemoProfile = () => {
+  try {
+    return JSON.parse(localStorage.getItem(DEMO_PROFILE_KEY) || 'null') || defaultDemoProfile;
+  } catch {
+    return defaultDemoProfile;
+  }
+};
 
 interface AuthContextType {
   user: User | null;
   profile: any;
   role: UserRole;
   loading: boolean;
-  login: (credentials: { email: string; password: string }) => Promise<void>;
+  login: (credentials: { email: string; password: string; role?: UserRole }) => Promise<void>;
   register: (data: any) => Promise<void>;
   logout: () => void;
   refreshUser: () => Promise<void>;
@@ -23,82 +59,64 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState<boolean>(true);
 
   const refreshUser = async () => {
-    const token = authStorage.getToken();
-    if (!token) {
-      setUser(null);
-      setProfile(null);
-      setLoading(false);
-      return;
-    }
-
-    try {
-      const data = await api.getMe();
-      setUser(data.user);
-      setProfile(data.profile);
-    } catch (err) {
-      console.warn('Session expired or invalid token:', err);
-      authStorage.clearToken();
-      setUser(null);
-      setProfile(null);
-    } finally {
-      setLoading(false);
-    }
+    setUser(readDemoSession());
+    setProfile(readDemoProfile());
+    setLoading(false);
   };
 
   useEffect(() => {
     refreshUser();
   }, []);
 
-  const login = async (credentials: { email: string; password: string }) => {
-    setLoading(true);
-    try {
-      const res = await api.login(credentials);
-      authStorage.setToken(res.token);
-      setUser(res.user);
-      const me = await api.getMe();
-      setProfile(me.profile);
-    } finally {
-      setLoading(false);
+  const login = async (credentials: { email: string; password: string; role?: UserRole }) => {
+    if (!credentials.email.trim() || credentials.password.length < 6) {
+      throw new Error('Enter a valid email and a password with at least 6 characters.');
     }
+    const existing = { ...(readDemoSession() || defaultDemoUser), email: credentials.email.trim().toLowerCase(), role: credentials.role || readDemoSession()?.role || defaultDemoUser.role };
+    localStorage.setItem(DEMO_SESSION_KEY, JSON.stringify(existing));
+    setUser(existing);
+    setProfile(readDemoProfile());
   };
 
   const register = async (data: any) => {
-    setLoading(true);
-    try {
-      const res = await api.register(data);
-      authStorage.setToken(res.token);
-      setUser(res.user);
-      const me = await api.getMe();
-      setProfile(me.profile);
-    } finally {
-      setLoading(false);
+    if (!data.name?.trim() || !data.email?.trim() || data.password?.length < 6) {
+      throw new Error('Add your name, a valid email, and a password with at least 6 characters.');
     }
+    const nextUser = { ...defaultDemoUser, email: data.email.trim().toLowerCase(), name: data.name.trim(), role: data.role || 'student' };
+    const nextProfile = { ...defaultDemoProfile, department: data.department || defaultDemoProfile.department };
+    localStorage.setItem(DEMO_SESSION_KEY, JSON.stringify(nextUser));
+    localStorage.setItem(DEMO_PROFILE_KEY, JSON.stringify(nextProfile));
+    setUser(nextUser);
+    setProfile(nextProfile);
   };
 
   const logout = () => {
-    authStorage.clearToken();
+    localStorage.removeItem(DEMO_SESSION_KEY);
     setUser(null);
     setProfile(null);
   };
 
   const updateProfile = async (data: any) => {
-    const res = await api.updateProfile(data);
-    if (res.user) {
-      setUser(res.user);
-    }
-    await refreshUser();
+    if (!user) throw new Error('Please sign in before editing your profile.');
+    const nextUser = { ...user, name: data.name?.trim() || user.name };
+    const nextProfile = { ...readDemoProfile(), ...data, userId: user.id };
+    localStorage.setItem(DEMO_SESSION_KEY, JSON.stringify(nextUser));
+    localStorage.setItem(DEMO_PROFILE_KEY, JSON.stringify(nextProfile));
+    setUser(nextUser);
+    setProfile(nextProfile);
   };
 
   // Instant one-click persona switcher for organizers, faculty admins, and students
   const fastSwitchRole = async (targetRole: UserRole) => {
     const demoAccounts: Record<UserRole, { email: string; pass: string }> = {
       student: { email: 'arjun.mehta@college.edu', pass: 'password123' },
+      coordinator: { email: 'coordinator@ksit.edu', pass: 'password123' },
       organizer: { email: 'organizer.robotics@college.edu', pass: 'password123' },
       admin: { email: 'admin.dean@college.edu', pass: 'password123' },
     };
 
     const target = demoAccounts[targetRole];
-    await login({ email: target.email, password: target.pass });
+    await login({ email: target.email, password: target.pass, role: targetRole });
   };
 
   const role: UserRole = user?.role || 'student';

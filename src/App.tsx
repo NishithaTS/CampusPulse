@@ -50,6 +50,27 @@ const DEPARTMENTS = [
   'Arts & Design',
 ];
 
+const DISCOVER_EVENTS: EventItem[] = [
+  {
+    id: 'ksit-tech-summit', title: 'KSIT Tech Summit 2026', description: 'A full day of AI, cloud, product design, and the future of campus innovation.', category: 'Technical', tags: ['technology', 'refreshments', 'certificate'], posterUrl: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80', date: '2026-10-18', startTime: '09:00', endTime: '17:00', registrationDeadline: '2026-10-15', venueId: 'main-auditorium', venueName: 'Main Auditorium', organizerId: 'ksit-innovation-cell', organizerName: 'KSIT Innovation Cell', clubId: 'innovation-cell', departmentId: 'Computer Science', capacity: 300, registeredCount: 168, attendedCount: 0, eligibility: 'All KSIT students', entryRequirements: 'Valid student ID', contactInfo: 'innovation@ksit.edu.in', waitlistEnabled: true, isPaid: false, status: 'published', verificationBadge: 'official', isFeatured: true, certificateOffered: true,
+  },
+  {
+    id: 'birds-design-workshop', title: 'Design Thinking Workshop', description: 'Learn practical user research, ideation, and prototyping from industry mentors.', category: 'Workshops', tags: ['design', 'birds', 'certificate'], posterUrl: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80', date: '2026-10-21', startTime: '14:00', endTime: '17:00', registrationDeadline: '2026-10-19', venueId: 'innovation-lab', venueName: 'Innovation Lab, Block B', organizerId: 'birds', organizerName: 'BIRDS', clubId: 'birds', departmentId: 'Arts & Design', capacity: 80, registeredCount: 54, attendedCount: 0, eligibility: 'All students', entryRequirements: 'Bring your laptop', contactInfo: 'birds@ksit.edu.in', waitlistEnabled: true, isPaid: false, status: 'published', verificationBadge: 'verified_club', isFeatured: true, certificateOffered: true,
+  },
+  {
+    id: 'annual-hackathon', title: 'Annual Hackathon: Build for Campus', description: 'Build useful tools for KSIT in a 24-hour team challenge with prizes and mentors.', category: 'Hackathons', tags: ['hackathon', 'food', 'technology'], posterUrl: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80', date: '2026-10-24', startTime: '10:00', endTime: '10:00', registrationDeadline: '2026-10-20', venueId: 'innovation-hub', venueName: 'Innovation Hub', organizerId: 'robotics-club', organizerName: 'KSIT Robotics Club', clubId: 'robotics', departmentId: 'Computer Science', capacity: 120, registeredCount: 97, attendedCount: 0, eligibility: 'Students in teams of 2–4', entryRequirements: 'Laptop and student ID', contactInfo: 'robotics@ksit.edu.in', waitlistEnabled: true, isPaid: false, status: 'published', verificationBadge: 'verified_club', isFeatured: false, certificateOffered: true,
+  },
+  {
+    id: 'career-launchpad', title: 'Career Launchpad: Meet the Industry', description: 'Connect with alumni and hiring teams for internships, projects, and career advice.', category: 'Career', tags: ['career', 'networking', 'refreshments'], posterUrl: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80', date: '2026-10-29', startTime: '11:00', endTime: '15:00', registrationDeadline: '2026-10-27', venueId: 'seminar-hall', venueName: 'Seminar Hall', organizerId: 'placement-cell', organizerName: 'KSIT Placement Cell', departmentId: 'Management & MBA', capacity: 200, registeredCount: 76, attendedCount: 0, eligibility: 'Pre-final and final year students', entryRequirements: 'Resume recommended', contactInfo: 'placements@ksit.edu.in', waitlistEnabled: false, isPaid: false, status: 'published', verificationBadge: 'official', isFeatured: false, certificateOffered: false,
+  },
+  {
+    id: 'cultural-night', title: 'KSIT Cultural Night', description: 'An evening of music, dance, theatre, and student-led performances.', category: 'Cultural', tags: ['culture', 'food', 'music'], posterUrl: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80', date: '2026-11-05', startTime: '18:00', endTime: '21:30', registrationDeadline: '2026-11-03', venueId: 'open-air-stage', venueName: 'Open Air Stage', organizerId: 'cultural-committee', organizerName: 'Cultural Committee', clubId: 'cultural-committee', capacity: 500, registeredCount: 245, attendedCount: 0, eligibility: 'All KSIT students', entryRequirements: 'Student ID', contactInfo: 'culture@ksit.edu.in', waitlistEnabled: true, isPaid: false, status: 'published', verificationBadge: 'official', isFeatured: false, certificateOffered: false,
+  },
+  {
+    id: 'inter-department-sports', title: 'Inter-Department Sports Meet', description: 'Represent your department in a week of football, badminton, athletics, and more.', category: 'Sports', tags: ['sports', 'teams', 'fitness'], posterUrl: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1200&q=80', date: '2026-11-10', startTime: '07:30', endTime: '17:00', registrationDeadline: '2026-11-06', venueId: 'sports-ground', venueName: 'KSIT Sports Ground', organizerId: 'sports-council', organizerName: 'KSIT Sports Council', departmentId: 'All Departments', capacity: 240, registeredCount: 132, attendedCount: 0, eligibility: 'All students', entryRequirements: 'Sports shoes', contactInfo: 'sports@ksit.edu.in', waitlistEnabled: false, isPaid: false, status: 'published', verificationBadge: 'official', isFeatured: false, certificateOffered: true,
+  },
+];
+
 function MainContent() {
   const { user, role } = useAuth();
 
@@ -90,7 +111,8 @@ function MainContent() {
       });
       setEvents(res);
     } catch (err) {
-      console.error('Failed to fetch events:', err);
+      console.warn('[v0] Events API unavailable; showing the KSIT discover catalog.', err);
+      setEvents(DISCOVER_EVENTS);
     } finally {
       setLoadingEvents(false);
     }
@@ -116,6 +138,11 @@ function MainContent() {
 
   // Filter local attributes like Free Food & Certificates
   const displayedEvents = events.filter((e) => {
+    const query = searchQuery.trim().toLowerCase();
+    const searchable = `${e.title} ${e.description} ${e.category} ${e.organizerName} ${e.venueName || ''} ${e.tags.join(' ')}`.toLowerCase();
+    if (query && !searchable.includes(query)) return false;
+    if (selectedCategory !== 'All' && e.category !== selectedCategory) return false;
+    if (selectedDepartment !== 'All Departments' && e.departmentId !== selectedDepartment && e.departmentId !== 'All Departments') return false;
     if (
       filterOnlyFreeFood &&
       !e.tags?.some((t) => t.toLowerCase().includes('food') || t.toLowerCase().includes('refreshment'))

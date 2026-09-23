@@ -49,6 +49,16 @@
       "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&auto=format&fit=crop&q=80",
       "campus": "Main North Campus",
       "createdAt": "2026-02-02T12:00:00.000Z"
+    },
+    {
+      "id": "usr-1790094719716-mj69h",
+      "email": "organizer@svyasa.edu.in",
+      "passwordHash": "$2b$10$qj.4chaqDHsMih/4SKrzdOcB/EKZsHFIyadmyCwbUk1c0V9M63wRK",
+      "name": "Nishi",
+      "role": "student",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
+      "campus": "Main North Campus",
+      "createdAt": "2026-09-22T16:31:59.802Z"
     }
   ],
   "students": [
@@ -79,6 +89,19 @@
         "Sports",
         "Workshops",
         "Entrepreneurship"
+      ]
+    },
+    {
+      "id": "std-1790094719802",
+      "userId": "usr-1790094719716-mj69h",
+      "studentId": "2026-ST-262",
+      "department": "Computer Science",
+      "year": "1st Year",
+      "phone": "",
+      "interests": [
+        "Technical",
+        "Workshops",
+        "Hackathons"
       ]
     }
   ],
@@ -118,7 +141,7 @@
         "instagram": "@birds_college",
         "github": "github.com/birds-robotics"
       },
-      "followedCount": 342,
+      "followedCount": 343,
       "organizerUserId": "usr-org-1"
     },
     {
@@ -139,7 +162,7 @@
         "website": "https://ieee.college.edu",
         "linkedin": "linkedin.com/school/college-ieee"
       },
-      "followedCount": 480
+      "followedCount": 481
     },
     {
       "id": "clb-3",
@@ -606,8 +629,8 @@
       "organizerName": "Athletics & Sports Council",
       "clubId": "clb-5",
       "capacity": 250,
-      "registeredCount": 180,
-      "attendedCount": 0,
+      "registeredCount": 181,
+      "attendedCount": 1,
       "eligibility": "Spectators welcome across all batches. Team rosters locked.",
       "entryRequirements": "Campus ID card required for stand entry.",
       "contactInfo": "sports@college.edu",
@@ -690,6 +713,21 @@
       "status": "confirmed",
       "registeredAt": "2026-08-25T14:20:00.000Z",
       "qrTicketCode": "CAMPUS-PASS-EVT5-USR1-CONFIRMED"
+    },
+    {
+      "id": "reg-1790095036077-pllz",
+      "eventId": "evt-6",
+      "userId": "usr-1790094719716-mj69h",
+      "studentId": "2026-ST-262",
+      "studentName": "Nishi",
+      "studentEmail": "organizer@svyasa.edu.in",
+      "department": "Computer Science",
+      "year": "1st Year",
+      "phone": "",
+      "customData": {},
+      "status": "confirmed",
+      "registeredAt": "2026-09-22T16:37:16.077Z",
+      "qrTicketCode": "CAMPUS-PASS-evt-6-usr-1790094719716-mj69h-reg-1790095036077-pllz"
     }
   ],
   "attendance": [
@@ -703,6 +741,17 @@
       "markedAt": "2026-09-19T10:15:30.000Z",
       "markedByMethod": "qr_scan",
       "verificationToken": "VERIF-TOKEN-PASS-99120"
+    },
+    {
+      "id": "att-1790095129357-h62i",
+      "eventId": "evt-6",
+      "registrationId": "reg-1790095036077-pllz",
+      "userId": "usr-1790094719716-mj69h",
+      "studentId": "2026-ST-262",
+      "studentName": "Nishi",
+      "markedAt": "2026-09-22T16:38:49.357Z",
+      "markedByMethod": "qr_scan",
+      "verificationToken": "ATT-VERIF-F7A38DB6"
     }
   ],
   "feedback": [
@@ -753,6 +802,28 @@
       "isRead": true,
       "actionUrl": "/certificates",
       "createdAt": "2026-09-19T19:05:00.000Z"
+    },
+    {
+      "id": "notif-1790095036077-lm49",
+      "userId": "usr-1790094719716-mj69h",
+      "type": "registration_confirmed",
+      "title": "Registration Confirmed 🎉",
+      "message": "You are successfully registered for \"Inter-Department 7-a-Side Football Championship\". View your digital QR ticket anytime in My Events.",
+      "eventId": "evt-6",
+      "isRead": false,
+      "actionUrl": "/events/evt-6",
+      "createdAt": "2026-09-22T16:37:16.077Z"
+    },
+    {
+      "id": "notif-1790095129357-voy6",
+      "userId": "usr-1790094719716-mj69h",
+      "type": "event_reminder",
+      "title": "✓ Attendance Marked",
+      "message": "Your presence has been successfully verified for \"Inter-Department 7-a-Side Football Championship\". Thank you for attending!",
+      "eventId": "evt-6",
+      "isRead": false,
+      "actionUrl": "/events/evt-6",
+      "createdAt": "2026-09-22T16:38:49.357Z"
     }
   ],
   "savedEvents": [
@@ -781,6 +852,18 @@
       "userId": "usr-student-1",
       "clubId": "clb-3",
       "followedAt": "2026-02-15T12:00:00.000Z"
+    },
+    {
+      "id": "cfw-1790094986867",
+      "userId": "usr-1790094719716-mj69h",
+      "clubId": "clb-1",
+      "followedAt": "2026-09-22T16:36:26.867Z"
+    },
+    {
+      "id": "cfw-1790094991299",
+      "userId": "usr-1790094719716-mj69h",
+      "clubId": "clb-2",
+      "followedAt": "2026-09-22T16:36:31.299Z"
     }
   ],
   "certificates": [
