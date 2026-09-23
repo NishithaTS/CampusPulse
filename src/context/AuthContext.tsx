@@ -43,7 +43,7 @@ interface AuthContextType {
   profile: any;
   role: UserRole;
   loading: boolean;
-  login: (credentials: { email: string; password: string }) => Promise<void>;
+  login: (credentials: { email: string; password: string; role?: UserRole }) => Promise<void>;
   register: (data: any) => Promise<void>;
   logout: () => void;
   refreshUser: () => Promise<void>;
@@ -68,11 +68,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     refreshUser();
   }, []);
 
-  const login = async (credentials: { email: string; password: string }) => {
+  const login = async (credentials: { email: string; password: string; role?: UserRole }) => {
     if (!credentials.email.trim() || credentials.password.length < 6) {
       throw new Error('Enter a valid email and a password with at least 6 characters.');
     }
-    const existing = readDemoSession() || { ...defaultDemoUser, email: credentials.email.trim().toLowerCase() };
+    const existing = { ...(readDemoSession() || defaultDemoUser), email: credentials.email.trim().toLowerCase(), role: credentials.role || readDemoSession()?.role || defaultDemoUser.role };
     localStorage.setItem(DEMO_SESSION_KEY, JSON.stringify(existing));
     setUser(existing);
     setProfile(readDemoProfile());
@@ -82,7 +82,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (!data.name?.trim() || !data.email?.trim() || data.password?.length < 6) {
       throw new Error('Add your name, a valid email, and a password with at least 6 characters.');
     }
-    const nextUser = { ...defaultDemoUser, email: data.email.trim().toLowerCase(), name: data.name.trim() };
+    const nextUser = { ...defaultDemoUser, email: data.email.trim().toLowerCase(), name: data.name.trim(), role: data.role || 'student' };
     const nextProfile = { ...defaultDemoProfile, department: data.department || defaultDemoProfile.department };
     localStorage.setItem(DEMO_SESSION_KEY, JSON.stringify(nextUser));
     localStorage.setItem(DEMO_PROFILE_KEY, JSON.stringify(nextProfile));
@@ -110,12 +110,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const fastSwitchRole = async (targetRole: UserRole) => {
     const demoAccounts: Record<UserRole, { email: string; pass: string }> = {
       student: { email: 'arjun.mehta@college.edu', pass: 'password123' },
+      coordinator: { email: 'coordinator@ksit.edu', pass: 'password123' },
       organizer: { email: 'organizer.robotics@college.edu', pass: 'password123' },
       admin: { email: 'admin.dean@college.edu', pass: 'password123' },
     };
 
     const target = demoAccounts[targetRole];
-    await login({ email: target.email, password: target.pass });
+    await login({ email: target.email, password: target.pass, role: targetRole });
   };
 
   const role: UserRole = user?.role || 'student';

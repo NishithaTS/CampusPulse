@@ -13,6 +13,7 @@ export const AuthDialog: React.FC<AuthDialogProps> = ({ onClose }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [department, setDepartment] = useState('Computer Science');
+  const [selectedRole, setSelectedRole] = useState<'student' | 'coordinator' | 'organizer' | 'admin'>('student');
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
@@ -21,8 +22,8 @@ export const AuthDialog: React.FC<AuthDialogProps> = ({ onClose }) => {
     setError('');
     setSubmitting(true);
     try {
-      if (mode === 'login') await login({ email, password });
-      else await register({ name, email, password, department, campus: 'KSIT' });
+      if (mode === 'login') await login({ email, password, role: selectedRole });
+      else await register({ name, email, password, department, campus: 'KSIT', role: selectedRole });
       onClose();
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unable to continue. Please try again.');
@@ -46,6 +47,23 @@ export const AuthDialog: React.FC<AuthDialogProps> = ({ onClose }) => {
           {mode === 'register' && <label className="flex flex-col gap-1.5 text-sm font-semibold">Full name<input required value={name} onChange={(e) => setName(e.target.value)} className="rounded-xl border border-[#eaded7] bg-white px-3 py-2.5 font-normal outline-none focus:border-[#c52a22]" /></label>}
           <label className="flex flex-col gap-1.5 text-sm font-semibold">Email<input required type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="rounded-xl border border-[#eaded7] bg-white px-3 py-2.5 font-normal outline-none focus:border-[#c52a22]" /></label>
           <label className="flex flex-col gap-1.5 text-sm font-semibold">Password<input required minLength={6} type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="rounded-xl border border-[#eaded7] bg-white px-3 py-2.5 font-normal outline-none focus:border-[#c52a22]" /></label>
+          <fieldset className="flex flex-col gap-2">
+            <legend className="text-sm font-semibold">Choose your role</legend>
+            <div className="grid grid-cols-2 gap-2">
+              {[
+                ['student', 'Student', 'Discover and attend events'],
+                ['coordinator', 'Coordinator', 'Create and manage club events'],
+                ['organizer', 'Organizer', 'Manage assigned events'],
+                ['admin', 'Admin', 'Manage the entire KSIT platform'],
+              ].map(([value, label, description]) => (
+                <label key={value} className={`cursor-pointer rounded-xl border p-3 transition ${selectedRole === value ? 'border-[#c52a22] bg-[#fff0eb] ring-1 ring-[#c52a22]' : 'border-[#eaded7] hover:border-[#c52a22]'}`}>
+                  <input type="radio" name="role" value={value} checked={selectedRole === value} onChange={() => setSelectedRole(value as typeof selectedRole)} className="sr-only" />
+                  <span className="block text-sm font-bold">{label}</span>
+                  <span className="mt-1 block text-[11px] leading-4 text-neutral-500">{description}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
           {mode === 'register' && <label className="flex flex-col gap-1.5 text-sm font-semibold">Department<select value={department} onChange={(e) => setDepartment(e.target.value)} className="rounded-xl border border-[#eaded7] bg-white px-3 py-2.5 font-normal outline-none focus:border-[#c52a22]"><option>Computer Science</option><option>Electronics & Comm.</option><option>Mechanical</option><option>Management & MBA</option></select></label>}
           {error && <p role="alert" className="rounded-xl bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
           <button disabled={submitting} type="submit" className="mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-[#c52a22] px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-[#9f1e19] disabled:cursor-not-allowed disabled:opacity-60">{mode === 'login' ? <LogIn /> : <UserPlus />}{submitting ? 'Please wait…' : mode === 'login' ? 'Sign in' : 'Create account'}</button>

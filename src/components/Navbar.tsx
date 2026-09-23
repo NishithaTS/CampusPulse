@@ -168,7 +168,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
 
             {/* Role-Specific Tabs */}
-            {(role === 'organizer' || role === 'admin') && (
+            {(role === 'coordinator' || role === 'organizer' || role === 'admin') && (
               <button
                 type="button"
                 onClick={() => onTabChange('organizer')}
@@ -204,7 +204,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Quick Persona Switcher for Evaluation */}
             <div className="hidden lg:flex items-center bg-neutral-100 p-1 rounded-xl border border-neutral-200 text-xs">
               <span className="px-2 font-medium text-neutral-500">Role:</span>
-              {(['student', 'organizer', 'admin'] as UserRole[]).map((r) => (
+              {(['student', 'coordinator', 'organizer', 'admin'] as UserRole[]).map((r) => (
                 <button
                   key={r}
                   type="button"
@@ -221,7 +221,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             </div>
 
             {/* Create Event CTA (Organizers & Admin) */}
-            {(role === 'organizer' || role === 'admin') && (
+            {(role === 'coordinator' || role === 'organizer' || role === 'admin') && (
               <button
                 type="button"
                 onClick={onOpenCreateEvent}
@@ -365,7 +365,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                       <Users className="w-3.5 h-3.5" />
                       Followed Clubs
                     </button>
-                    {(role === 'organizer' || role === 'admin') && (
+                    {(role === 'coordinator' || role === 'organizer' || role === 'admin') && (
                       <button
                         type="button"
                         onClick={() => {
@@ -459,7 +459,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <span>Clubs</span>
         </button>
 
-        {(role === 'organizer' || role === 'admin') ? (
+        {(role === 'coordinator' || role === 'organizer' || role === 'admin') ? (
           <button
             type="button"
             onClick={() => onTabChange('organizer')}
